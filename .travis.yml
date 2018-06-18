@@ -3,10 +3,10 @@ node_js:
   - "node"
 
 before_script:
-- npm i -g firebase-tools
+- yarn global add firebase-tools
 script:
-- npm run build
-- firebase use --token $FIREBASE_TOKEN angular-playground
+- ng build --prod
+- firebase use --token $FIREBASE_TOKEN ng-playground-diogen737
 - firebase deploy -m "build $TRAVIS_BUILD_ID" --non-interactive --token $FIREBASE_TOKEN
 cache:
   directories:
