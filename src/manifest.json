@@ -1,6 +1,6 @@
 {
   "name": "angular-playground",
-  "short_name": "angular-playground",
+  "short_name": "NgPlayground",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
