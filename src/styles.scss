@@ -1,3 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+// Some global styles
 
 body { margin: 0; }
+
+// Global variables
+
+$screen-sm: 600px;
+$screen-md: 960px;
+$screen-lg: 1280px;
+$screen-xl: 1920px;
+
+
+$nav-height: 3rem;

@@ -1,28 +1,32 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
-    #drawer
-    class="sidenav"
-    fixedInViewport="true"
-		role="'navigation'">
-    <mat-toolbar color="primary">Menu</mat-toolbar>
-    <mat-nav-list (click)="toggleSidenav()">
-      <a mat-list-item routerLink="/table" routerLinkActive="active">Link 1</a>
-      <a mat-list-item routerLink="/dashboard" routerLinkActive="active">Link 2</a>
-      <a mat-list-item routerLink="/" routerLinkActive="active">Link 3</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-			<button
-				#sidenavToggler
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>Application Title</span>
-		</mat-toolbar>
-		<router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<ul class="menu">
+	<li>
+		<a mat-icon-button #tooltipMaterial="matTooltip" matTooltip="Material Layouts"
+			[matTooltipPosition]="tooltipPosition" routerLink="/material" routerLinkActive="active">
+			<mat-icon aria-label="Example icon-button with a heart icon">layers</mat-icon>
+		</a>
+	</li>
+	<li>
+		<a mat-icon-button #tooltipAuth="matTooltip" matTooltip="Auth Demo"
+			[matTooltipPosition]="tooltipPosition" routerLink="/auth" routerLinkActive="active">
+			<mat-icon aria-label="Example icon-button with a heart icon">vpn_key</mat-icon>			
+		</a>
+	</li>
+	<li>
+		<a mat-icon-button #tooltipMood="matTooltip" matTooltip="Some Stuff"
+			[matTooltipPosition]="tooltipPosition" routerLink="/111" routerLinkActive="active">
+			<mat-icon aria-label="Test">mood</mat-icon>
+		</a>
+	</li>
+	<li>
+		<a mat-icon-button #tooltipMap="matTooltip" matTooltip="Google Maps"
+			[matTooltipPosition]="tooltipPosition" routerLink="/222" routerLinkActive="active">
+			<mat-icon aria-label="Test">map</mat-icon>
+		</a>
+	</li>
+	<li>
+		<a mat-icon-button #tooltipGrain="matTooltip" matTooltip="About"
+			[matTooltipPosition]="tooltipPosition" routerLink="/333" routerLinkActive="active">
+			<mat-icon aria-label="Test">grain</mat-icon>
+		</a>
+	</li>
+</ul>

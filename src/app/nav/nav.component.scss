@@ -1,8 +1,39 @@
-.sidenav-container {
-  height: 100%;
+@import 'src/styles.scss';
+
+.active {
+  background: rgba(0, 0, 0, 0.1) !important;
+}
+.menu {
+	align-items: center;
+	background-color: #eee;
+	bottom: 0;
+	box-shadow: inset 2px 0 10px rgba(0, 0, 0, 0.26);
+	display: flex;
+	justify-content: space-around;
+	height: $nav-height;
+	list-style-type: none;
+	margin: 0;
+	max-width: 100%;
+	overflow: hidden;
+	padding: 0;
+	position: fixed;
+	width: 100%;
+	z-index: 2000;
+}
+.menu li a{
+  color: #72739f;
 }
 
-.sidenav {
-  width: 200px;
-  box-shadow: 3px 0 6px rgba(0,0,0,.24);
+@media screen and (min-width: $screen-sm) {
+	.menu {
+		flex-direction: column;
+		justify-content: flex-start;
+		height: 100%;
+		overflow: visible;
+		position: relative;
+		width: auto;
+	}
+	.menu li a {
+		margin: 0.75rem;
+	}
 }

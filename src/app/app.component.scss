@@ -1,0 +1,26 @@
+@import 'src/styles.scss';
+
+.wrapper {
+	display: flex;
+	flex-direction: column-reverse;
+
+	.content {
+		flex: 1 1 auto;
+		margin-bottom: $nav-height;
+	}
+}
+
+@media screen and (min-width: $screen-sm) {
+	.wrapper {
+		flex-direction: row-reverse;
+		max-height: 100vh;
+
+		.content {
+			margin: 0;
+			overflow-y: auto;
+		}
+		.nav-container {
+			min-height: 100vh;
+		}
+	}
+}

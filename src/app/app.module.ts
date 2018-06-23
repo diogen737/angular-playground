@@ -1,33 +1,28 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavComponent } from './nav/nav.component';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { RouterModule } from '@angular/router';
+import { MatIconModule, MatButtonModule, MatTooltipModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { environment } from '../environments/environment';
+import { AppComponent } from './app.component';
+import { AppRoutes, AppComponents, AppProviders } from './app.config';
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		NavComponent
-	],
 	imports: [
 		BrowserModule,
-		AppRoutingModule,
+		RouterModule.forRoot(AppRoutes),
+		FlexLayoutModule,
 		ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
 		BrowserAnimationsModule,
-		LayoutModule,
-		MatToolbarModule,
 		MatButtonModule,
-		MatSidenavModule,
 		MatIconModule,
-		MatListModule
+		MatTooltipModule,
 	],
-	providers: [],
-	bootstrap: [AppComponent]
+	declarations: [ AppComponents	],
+	providers: [ AppProviders ],
+	bootstrap: [ AppComponent ]
 })
 export class AppModule { }
