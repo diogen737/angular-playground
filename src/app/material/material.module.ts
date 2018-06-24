@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutModule } from '@angular/cdk/layout';
 import { RouterModule } from '@angular/router';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatTableModule,
-	MatPaginatorModule, MatSortModule, MatMenuModule, MatCardModule, MatGridListModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule,
+	MatListModule, MatTableModule, MatPaginatorModule, MatSortModule, MatMenuModule,
+	MatCardModule, MatGridListModule, MatTreeModule } from '@angular/material';
 
 import { ModuleRoutes, ModuleComponents, ModuleProviders } from './material.config';
 
@@ -23,6 +24,7 @@ import { ModuleRoutes, ModuleComponents, ModuleProviders } from './material.conf
 		MatSortModule,
 		MatTableModule,
 		MatToolbarModule,
+		MatTreeModule
 	],
 	declarations: [ ModuleComponents ],
 	providers: [ ModuleProviders ]

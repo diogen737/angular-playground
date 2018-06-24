@@ -31,6 +31,18 @@ const EXAMPLE_DATA: TableItem[] = [
 	{id: 18, name: 'Argon'},
 	{id: 19, name: 'Potassium'},
 	{id: 20, name: 'Calcium'},
+	{id: 21, name: 'Scandium'},
+	{id: 22, name: 'Titanium'},
+	{id: 23, name: 'Vanadium'},
+	{id: 24, name: 'Chromium'},
+	{id: 25, name: 'Manganese'},
+	{id: 26, name: 'Iron'},
+	{id: 27, name: 'Cobalt'},
+	{id: 28, name: 'Nickel'},
+	{id: 29, name: 'Copper'},
+	{id: 30, name: 'Zinc'},
+	{id: 31, name: 'Gallium'},
+	{id: 32, name: 'Germanium'},
 ];
 
 /**

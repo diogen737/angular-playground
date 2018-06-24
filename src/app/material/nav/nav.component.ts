@@ -1,6 +1,7 @@
 import { Component, ViewChild, OnInit, ViewEncapsulation } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav, MatButton } from '@angular/material';
+import { ObservableMedia } from '@angular/flex-layout';
 
 @Component({
 	selector: 'app-material-nav',
@@ -14,15 +15,14 @@ export class NavComponent implements OnInit {
 	@ViewChild('sidenavToggler') toggleBtn: MatButton;
 	isHandset: boolean;
 
-	constructor(private breakpointObserver: BreakpointObserver) {}
+	constructor(private media: ObservableMedia) {}
 
 	ngOnInit(): void {
-		this.breakpointObserver.observe('(max-width: 960px)')
-			.subscribe(result => {
-				this.isHandset = result.matches;
-				this.sidenav.mode = result.matches ? 'over' : 'side';
-				this.sidenav.opened = ! result.matches;
-				this.toggleBtn.disabled = ! result.matches;
+		this.media.subscribe(changes => {
+				this.isHandset = changes.mqAlias === 'xs';
+				this.sidenav.mode = changes.mqAlias === 'xs' ? 'over' : 'side';
+				this.sidenav.opened = changes.mqAlias !== 'xs';
+				this.toggleBtn.disabled = changes.mqAlias !== 'xs';
 			});
 	}
 
