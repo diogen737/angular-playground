@@ -5,6 +5,7 @@ import { NavComponent } from './nav/nav.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 export const AppRoutes: Routes = [
+	{ path: '', pathMatch: 'full', redirectTo: 'material' },
 	{ path: 'material', loadChildren: './material/material.module#MaterialModule' },
 	{ path: 'auth', loadChildren: './auth/auth.module#AuthModule' },
 	{ path: '**', component: NotFoundComponent }

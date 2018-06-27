@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Popup</h1>
+<div mat-dialog-content>
+	<h4>Your data:</h4>
+	<p> {{ data | json }} </p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="'dialog closed'" cdkFocusInitial>Ok</button>
+</div>

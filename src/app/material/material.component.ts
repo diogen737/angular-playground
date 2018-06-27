@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-material',
@@ -6,4 +7,10 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 	styleUrls: ['./material.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
-export class MaterialComponent {}
+export class MaterialComponent {
+
+	constructor(private router: Router, private route: ActivatedRoute) {
+		this.router.navigate(['./misc'], { relativeTo: this.route }	);
+	}
+
+}

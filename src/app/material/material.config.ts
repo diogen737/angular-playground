@@ -6,6 +6,7 @@ import { TableComponent } from './table/table.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MiscComponent } from './misc/misc.component';
 import { TreeComponent } from './tree/tree.component';
+import { InfoPopupComponent } from './info-popup/info-popup.component';
 
 export const ModuleRoutes: Routes = [
 	{
@@ -26,7 +27,8 @@ export const ModuleComponents = [
 	DashboardComponent,
 	NavComponent,
 	MiscComponent,
-	TreeComponent
+	TreeComponent,
+	InfoPopupComponent,
 ];
 
 export const ModuleProviders = [];
