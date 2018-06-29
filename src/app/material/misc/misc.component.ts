@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
 
-import { StateSection, stateSections } from './state-group';
 import { InfoPopupComponent } from '../info-popup/info-popup.component';
 
 @Component({
@@ -30,23 +28,7 @@ export class MiscComponent {
 		])
 	});
 
-	stateSectionOptions: Observable<StateSection[]>;
-
-	constructor(private fb: FormBuilder, private popup: MatDialog) {
-		// Detect autocomplete changes (Grid tab)
-		this.stateSectionOptions = this.gridGroup.get('state').valueChanges
-			.pipe(
-				startWith(''),
-				map(val => {
-					if (val) {
-						return stateSections
-							.map(group => ({ letter: group.letter, names: this._filter(group.names, val) }))
-							.filter(group => group.names.length > 0);
-					}
-					return stateSections;
-				})
-			);
-	}
+	constructor(private fb: FormBuilder, private popup: MatDialog) {}
 
 	openPopup(): void {
 		this.popup.open(InfoPopupComponent, {
@@ -61,10 +43,5 @@ export class MiscComponent {
 	}
 
 	get formArray(): AbstractControl | null { return this.stepperGroup.get('formArray'); }
-
-	private _filter(opts: string[], letter: string): string[] {
-		const filterValue = letter.toLowerCase();
-		return opts.filter(opt => opt.toLowerCase().startsWith(filterValue));
-	}
 
 }

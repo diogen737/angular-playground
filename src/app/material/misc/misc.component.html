@@ -43,24 +43,19 @@
 			<h4>Grid layout</h4>
 		</span>
 		<div class="grid">
-			<form [formGroup]="gridGroup">
+			<!-- <form [formGroup]="gridGroup"> -->
 				
 				<div class="grid-item">
-					<mat-form-field>
-						<input matInput placeholder="State" formControlName="state" [matAutocomplete]="autoGroup" autocomplete="off" required>
-						<mat-autocomplete #autoGroup="matAutocomplete">
-							<mat-optgroup *ngFor="let section of stateSectionOptions | async" [label]="section.letter">
-								<mat-option *ngFor="let name of section.names" [value]="name"> {{ name }} </mat-option>
-							</mat-optgroup>
-						</mat-autocomplete>
-					</mat-form-field>
+					<app-state-combobox [fg]="gridGroup"></app-state-combobox>
 				</div>
 				
-				<div class="grid-item">
+				<!-- <div class="grid-item">
 					<mat-slider formControlName="range" min="0" max="1000" thumbLabel></mat-slider>
-				</div>
+				</div> -->
 
-			</form>
+			<!-- </form> -->
+			<p>{{ gridGroup.value | json }}</p>
+			<!-- <p>{{ gridGroup.status | json }}</p> -->
 		</div>
 
 	</mat-tab>

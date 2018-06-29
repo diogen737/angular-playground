@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MiscComponent } from './misc/misc.component';
 import { TreeComponent } from './tree/tree.component';
 import { InfoPopupComponent } from './info-popup/info-popup.component';
+import { StateComboboxComponent } from './state-combobox/state-combobox.component';
 
 export const ModuleRoutes: Routes = [
 	{
@@ -29,6 +30,7 @@ export const ModuleComponents = [
 	MiscComponent,
 	TreeComponent,
 	InfoPopupComponent,
+	StateComboboxComponent,
 ];
 
 export const ModuleProviders = [];
