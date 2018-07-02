@@ -1,5 +1,4 @@
 import { Component, ViewChild, OnInit, ViewEncapsulation } from '@angular/core';
-import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav, MatButton } from '@angular/material';
 import { ObservableMedia } from '@angular/flex-layout';
 
@@ -14,16 +13,17 @@ export class NavComponent implements OnInit {
 	@ViewChild('drawer') sidenav: MatSidenav;
 	@ViewChild('sidenavToggler') toggleBtn: MatButton;
 	isHandset: boolean;
+	private handsetViewports = ['xs', 'sm'];
 
 	constructor(private media: ObservableMedia) {}
 
 	ngOnInit(): void {
 		this.media.subscribe(changes => {
-				this.isHandset = changes.mqAlias === 'xs';
-				this.sidenav.mode = changes.mqAlias === 'xs' ? 'over' : 'side';
-				this.sidenav.opened = changes.mqAlias !== 'xs';
-				this.toggleBtn.disabled = changes.mqAlias !== 'xs';
-			});
+			this.isHandset = this.handsetViewports.includes(changes.mqAlias);
+			this.sidenav.mode = this.handsetViewports.includes(changes.mqAlias) ? 'over' : 'side';
+			this.sidenav.opened = ! this.handsetViewports.includes(changes.mqAlias);
+			this.toggleBtn.disabled = ! this.handsetViewports.includes(changes.mqAlias);
+		});
 	}
 
 	toggleSidenav(): void {
