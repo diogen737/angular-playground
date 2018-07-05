@@ -17,6 +17,7 @@ export class MiscComponent {
 	LOGIN_MIN_LENGTH = 2;
 	PWD_WEAK_PATTERN = /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{3,})/;
 	PWD_STRONG_PATTERN = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+	PWD_PATTERN = this.PWD_WEAK_PATTERN;
 
 	stepperGroup: FormGroup = this.fb.group({
 		formArray: this.fb.array([
@@ -25,7 +26,7 @@ export class MiscComponent {
 				email: ['', [Validators.required, Validators.email] ],
 			}),
 			this.fb.group({
-				password: ['', [Validators.required, regexAllowValidator(this.PWD_WEAK_PATTERN)] ],
+				password: ['', [Validators.required, regexAllowValidator(this.PWD_PATTERN)] ],
 				passwordRepeat: ['', Validators.required]
 			}, { validator: matchValidator }),
 			this.fb.group({
@@ -48,7 +49,6 @@ export class MiscComponent {
 				state: this.state.value,
 			}
 		});
-		this.pwdFormGroup.updateValueAndValidity({ onlySelf: false });
 	}
 
 	get formArray(): AbstractControl | null { return this.stepperGroup.get('formArray'); }
