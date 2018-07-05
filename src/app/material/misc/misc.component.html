@@ -44,7 +44,7 @@
 				</mat-step>
 				<mat-step formGroupName="2" [stepControl]="addressFormGroup">
 					<ng-template matStepLabel>Your address</ng-template>
-					<app-state-combobox [fg]="addressFormGroup" [required]="true"></app-state-combobox>
+					<app-state-combobox [fg]="addressFormGroup"></app-state-combobox>
 					<div>
 						<button mat-button type="button" matStepperPrevious>Back</button>
 						<button mat-button type="button" (click)="openPopup()">Done</button>
