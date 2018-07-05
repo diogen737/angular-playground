@@ -1,10 +1,14 @@
 @import 'src/styles.scss';
 
 .grid {
-	display: grid;
-	grid-gap: 10px;
-	grid-template-columns: 1fr 1fr 1fr;
-	padding: 10px;
+	display: flex;
+	flex-direction: column;
+
+	.grid-item {
+		margin: 0 auto;
+		max-width: 300px;
+		width: 100%;
+	}
 }
 
 .tab-icon {
@@ -14,7 +18,18 @@
 .tab-group {
 	margin: 0.5rem;
 }
-.tab-header, .tab-component-header {
+.tab-header {
 	text-align: center;
 	width: 90%;
+}
+
+@media screen and (min-width: $screen-md) {
+	.grid {
+		flex-direction: row;
+
+		.grid-item {
+			margin: auto;
+			padding: 0 10px;
+		}
+	}
 }
