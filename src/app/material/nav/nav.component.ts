@@ -20,9 +20,9 @@ export class NavComponent implements OnInit {
 	ngOnInit(): void {
 		this.media.subscribe(changes => {
 			this.isHandset = this.handsetViewports.includes(changes.mqAlias);
-			this.sidenav.mode = this.handsetViewports.includes(changes.mqAlias) ? 'over' : 'side';
-			this.sidenav.opened = ! this.handsetViewports.includes(changes.mqAlias);
-			this.toggleBtn.disabled = ! this.handsetViewports.includes(changes.mqAlias);
+			this.sidenav.mode = this.isHandset ? 'over' : 'side';
+			this.sidenav.opened = ! this.isHandset;
+			this.toggleBtn.disabled = ! this.isHandset;
 		});
 	}
 
