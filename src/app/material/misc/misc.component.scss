@@ -5,9 +5,20 @@
 	flex-direction: column;
 
 	.grid-item {
-		margin: 0 auto;
+		margin: 0 auto 1rem auto;
 		max-width: 300px;
 		width: 100%;
+	}
+}
+
+mat-error {
+	align-items: center;
+	display: flex !important;
+	justify-content: flex-start;
+
+	.error-icon {
+		cursor: pointer;
+		padding: 5px;
 	}
 }
 

@@ -7,7 +7,7 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule,
 	MatListModule, MatTableModule, MatPaginatorModule, MatSortModule, MatMenuModule,
 	MatCardModule, MatGridListModule, MatTreeModule, MatTabsModule, MatAutocompleteModule,
 	MatFormFieldModule, MatInputModule, MatSliderModule, MatStepperModule, MatDialogModule,
-	MatDatepickerModule} from '@angular/material';
+	MatDatepickerModule, MatTooltipModule} from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 import { ModuleRoutes, ModuleComponents, ModuleProviders } from './material.config';
@@ -41,6 +41,7 @@ import { InfoPopupComponent } from './info-popup/info-popup.component';
 		MatTableModule,
 		MatTabsModule,
 		MatToolbarModule,
+		MatTooltipModule,
 		MatTreeModule,
 	],
 	entryComponents: [ InfoPopupComponent ],

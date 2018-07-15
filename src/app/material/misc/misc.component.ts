@@ -1,7 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { MatDialog, MAT_DATE_FORMATS } from '@angular/material';
-import { MAT_MOMENT_DATE_FORMATS, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { MatDialog } from '@angular/material';
 
 import * as moment from 'moment';
 
@@ -17,10 +16,14 @@ import { matchValidator } from '../../shared/validators/match-validator';
 })
 export class MiscComponent {
 
-	LOGIN_MIN_LENGTH = 2;
-	PWD_WEAK_PATTERN = /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{3,})/;
-	PWD_STRONG_PATTERN = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
-	PWD_PATTERN = this.PWD_WEAK_PATTERN;
+	LOGIN_MIN_LENGTH = 3;
+	PWD_PATTERN_WEAK = /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{3,})/;
+	PWD_PATTERN_STRONG = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+	PWD_HINT_WEAK = 'Password must be at least 3 chars long and contain any combination of lowercase/uppercase letters and digits';
+	PWD_HINT_STRONG = 'Password must be at least 8 chars long and contain lowercase/uppercase letters, digits and special symbols';
+	PWD_PATTERN = this.PWD_PATTERN_STRONG;
+	PWD_HINT = this.PWD_HINT_STRONG;
+	MIN_DATE = moment();
 
 	stepperGroup: FormGroup = this.fb.group({
 		formArray: this.fb.array([
@@ -34,7 +37,7 @@ export class MiscComponent {
 			}, { validator: matchValidator }),
 			this.fb.group({
 				state: '',
-				dateFrom: moment()
+				dateFrom: null
 			})
 		])
 	});
@@ -42,17 +45,21 @@ export class MiscComponent {
 	constructor(private fb: FormBuilder, private popup: MatDialog) {}
 
 	openPopup(): void {
-		// console.log(this.dateFrom.value);
+
+		const popupData = this.stepperGroup.valid ? {
+			login: this.login.value,
+			email: this.email.value,
+			password: this.password.value,
+			state: this.state.value,
+			dateFrom: this.dateFrom.value
+		} : {
+			message: 'Some fields of the form are in INVALID state'
+		};
+
 		this.popup.open(InfoPopupComponent, {
 			width: '350px',
 			height: '300px',
-			data: {
-				login: this.login.value,
-				email: this.email.value,
-				password: this.password.value,
-				state: this.state.value,
-				dateFrom: this.dateFrom.value
-			}
+			data: popupData
 		});
 	}
 
