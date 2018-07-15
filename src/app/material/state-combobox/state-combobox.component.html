@@ -1,4 +1,4 @@
-<mat-form-field [formGroup]="fg">
+<mat-form-field [formGroup]="fg" class="grid-item">
 	<input matInput placeholder="State" formControlName="state" [matAutocomplete]="autoGroup" autocomplete="off">
 	<mat-autocomplete #autoGroup="matAutocomplete">
 		<mat-optgroup *ngFor="let section of stateSectionOptions | async" [label]="section.letter">

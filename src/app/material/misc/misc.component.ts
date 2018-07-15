@@ -1,6 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MAT_DATE_FORMATS } from '@angular/material';
+import { MAT_MOMENT_DATE_FORMATS, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+
+import * as moment from 'moment';
 
 import { InfoPopupComponent } from '../info-popup/info-popup.component';
 import { regexAllowValidator } from '../../shared/validators/regexp-allow-validator';
@@ -30,8 +33,8 @@ export class MiscComponent {
 				passwordRepeat: ['', Validators.required]
 			}, { validator: matchValidator }),
 			this.fb.group({
-				// country: '',
-				state: ''
+				state: '',
+				dateFrom: moment()
 			})
 		])
 	});
@@ -39,6 +42,7 @@ export class MiscComponent {
 	constructor(private fb: FormBuilder, private popup: MatDialog) {}
 
 	openPopup(): void {
+		// console.log(this.dateFrom.value);
 		this.popup.open(InfoPopupComponent, {
 			width: '350px',
 			height: '300px',
@@ -47,6 +51,7 @@ export class MiscComponent {
 				email: this.email.value,
 				password: this.password.value,
 				state: this.state.value,
+				dateFrom: this.dateFrom.value
 			}
 		});
 	}
@@ -55,12 +60,13 @@ export class MiscComponent {
 
 	get mainFormGroup(): AbstractControl | null { return this.formArray.get([0]); }
 	get pwdFormGroup(): AbstractControl | null { return this.formArray.get([1]); }
-	get addressFormGroup(): AbstractControl | null { return this.formArray.get([2]); }
+	get miscFormGroup(): AbstractControl | null { return this.formArray.get([2]); }
 
 	get login(): AbstractControl | null { return this.mainFormGroup.get('login'); }
 	get email(): AbstractControl | null { return this.mainFormGroup.get('email'); }
 	get password(): AbstractControl | null { return this.pwdFormGroup.get('password'); }
 	get passwordRepeat(): AbstractControl | null { return this.pwdFormGroup.get('passwordRepeat'); }
-	get state(): AbstractControl | null { return this.addressFormGroup.get('state'); }
+	get state(): AbstractControl | null { return this.miscFormGroup.get('state'); }
+	get dateFrom(): AbstractControl | null { return this.miscFormGroup.get('dateFrom'); }
 
 }

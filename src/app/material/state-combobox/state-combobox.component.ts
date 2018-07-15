@@ -18,7 +18,7 @@ export class StateComboboxComponent implements OnInit {
 	ngOnInit() {
 		this.stateSectionOptions = this.fg.get('state').valueChanges
 			.pipe(
-				startWith(''),	// to show autocomplit on initial input click
+				startWith(''),	// to show autocomplete on initial input click
 				map(val => {		// filter sections from the dictionary
 					if (val) {
 						return stateSections
