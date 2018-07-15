@@ -1,74 +1,79 @@
-<span class="tab-component-header">
-	<h2>Imagine that this is super complex user form</h2>
-</span>
 <mat-tab-group class="tab-group">
 
 	<mat-tab label="Stepper">
 		
-		<h4 class="tab-header">Stepper example</h4>
+		<h4 class="tab-header">Stepper form example</h4>
 		<form [formGroup]="stepperGroup">
-			<mat-horizontal-stepper linear formArrayName="formArray">
-				<mat-step formGroupName="0" [stepControl]="formArray?.get([0])">
-					<ng-template matStepLabel>Your name</ng-template>
-					<mat-form-field>
-						<input matInput placeholder="First name" formControlName="firstName" autocomplete="off" required>
-						<mat-error>The field is required</mat-error>
-					</mat-form-field>
-					<mat-form-field>
-						<input matInput placeholder="Last name" formControlName="lastName" autocomplete="off" required>
-						<mat-error>The field is required</mat-error>
-					</mat-form-field>
+			<mat-vertical-stepper linear formArrayName="formArray">
+				<mat-step formGroupName="0" [stepControl]="mainFormGroup">
+					<ng-template matStepLabel>Main info</ng-template>
+					<div class="grid">
+						<mat-form-field class="grid-item">
+							<input matInput placeholder="Login" formControlName="login" autocomplete="off" required>
+							<mat-error *ngIf="login.hasError('required')">The field is required</mat-error>
+							<mat-error *ngIf="login.hasError('minlength')">Minimum length is {{ LOGIN_MIN_LENGTH }}</mat-error>
+						</mat-form-field>
+						<mat-form-field class="grid-item">
+							<input matInput placeholder="Email" formControlName="email" autocomplete="off" required>
+							<mat-error *ngIf="email.hasError('required')">The field is required</mat-error>
+							<mat-error *ngIf="email.hasError('email') && !email.hasError('required')">Email format is invalid</mat-error>
+						</mat-form-field>
+					</div>
 					<div>
 						<button mat-button type="button" matStepperNext>Next</button>
 					</div>
 				</mat-step>
-				<mat-step formGroupName="1" [stepControl]="formArray?.get([1])">
-					<ng-template matStepLabel>Your address</ng-template>
-					<mat-form-field>
-						<input matInput placeholder="Address" formControlName="address" autocomplete="off">
-					</mat-form-field>
+				<mat-step formGroupName="1" [stepControl]="pwdFormGroup">
+					<ng-template matStepLabel>Password</ng-template>
+					<div class="grid">
+						<mat-form-field class="grid-item">
+							<input matInput type="password" placeholder="Password" formControlName="password" autocomplete="off" required>
+							<mat-error *ngIf="password.hasError('required')">The field is required</mat-error>
+							<mat-error *ngIf="password.hasError('forbidden') && !password.hasError('required')"> 
+								Password is not complex enough
+								<div class="error-icon" matTooltip="{{PWD_HINT}}">
+									<mat-icon>contact_support</mat-icon>
+								</div>
+							</mat-error>
+						</mat-form-field>
+						<mat-form-field class="grid-item">
+							<input matInput type="password" placeholder="Repeat password" formControlName="passwordRepeat" autocomplete="off" required>
+							<mat-error *ngIf="passwordRepeat.hasError('required')">The field is required</mat-error>
+							<mat-error *ngIf="passwordRepeat.hasError('nomatch')">Passwords do not match</mat-error>
+						</mat-form-field>
+					</div>
+					<div>
+						<button mat-button type="button" matStepperPrevious>Back</button>
+						<button mat-button type="button" matStepperNext>Next</button>
+					</div>
+				</mat-step>
+				<mat-step formGroupName="2" [stepControl]="miscFormGroup">
+					<ng-template matStepLabel>Delivery</ng-template>
+					<div class="grid">
+						<app-state-combobox class="grid-item" [fg]="miscFormGroup"></app-state-combobox>
+						<mat-form-field class="grid-item">
+							<input matInput [matDatepicker]="picker" [min]="MIN_DATE" placeholder="Choose a date" formControlName="dateFrom" autocomplete="off">
+							<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+							<mat-datepicker touchUi #picker></mat-datepicker>
+							<mat-error *ngIf="dateFrom.hasError('matDatepickerMin')"> Choose today or later date </mat-error>
+						</mat-form-field>
+					</div>
 					<div>
 						<button mat-button type="button" matStepperPrevious>Back</button>
 						<button mat-button type="button" (click)="openPopup()">Done</button>
 					</div>
 				</mat-step>
-			</mat-horizontal-stepper>
+			</mat-vertical-stepper>
 		</form>
 
 	</mat-tab>
 
-	<mat-tab label="Grid">
-		
-		<span class="tab-header">
-			<h4>Grid layout</h4>
-		</span>
-		<div class="grid">
-			<form [formGroup]="gridGroup">
-				
-				<div class="grid-item">
-					<mat-form-field>
-						<input matInput placeholder="State" formControlName="state" [matAutocomplete]="autoGroup" autocomplete="off" required>
-						<mat-autocomplete #autoGroup="matAutocomplete">
-							<mat-optgroup *ngFor="let section of stateSectionOptions | async" [label]="section.letter">
-								<mat-option *ngFor="let name of section.names" [value]="name"> {{ name }} </mat-option>
-							</mat-optgroup>
-						</mat-autocomplete>
-					</mat-form-field>
-				</div>
-				
-				<div class="grid-item">
-					<mat-slider formControlName="range" min="0" max="1000" thumbLabel></mat-slider>
-				</div>
-
-			</form>
-		</div>
-
-	</mat-tab>
 	<mat-tab>
 		<ng-template mat-tab-label>
-			The worst sushi
+			Misc
 			<mat-icon class="tab-icon">account_balance</mat-icon>
 		</ng-template>
 		Content 3
 	</mat-tab>
+	
 </mat-tab-group>

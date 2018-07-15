@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
+import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
 
 import { NavComponent } from './nav/nav.component';
 import { MaterialComponent } from './material.component';
@@ -7,6 +9,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MiscComponent } from './misc/misc.component';
 import { TreeComponent } from './tree/tree.component';
 import { InfoPopupComponent } from './info-popup/info-popup.component';
+import { StateComboboxComponent } from './state-combobox/state-combobox.component';
+import { RU_DATE_FORMAT } from '../shared/datepicker-formats';
 
 export const ModuleRoutes: Routes = [
 	{
@@ -29,6 +33,11 @@ export const ModuleComponents = [
 	MiscComponent,
 	TreeComponent,
 	InfoPopupComponent,
+	StateComboboxComponent,
 ];
 
-export const ModuleProviders = [];
+export const ModuleProviders = [
+	{ provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
+	// { provide: MAT_DATE_LOCALE, useValue: 'ru-RU' }
+	{ provide: MAT_DATE_FORMATS, useValue: RU_DATE_FORMAT }
+];

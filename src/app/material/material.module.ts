@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { LayoutModule } from '@angular/cdk/layout';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule,
 	MatListModule, MatTableModule, MatPaginatorModule, MatSortModule, MatMenuModule,
 	MatCardModule, MatGridListModule, MatTreeModule, MatTabsModule, MatAutocompleteModule,
-	MatFormFieldModule, MatInputModule, MatSliderModule, MatStepperModule, MatSnackBarModule, MatDialogModule} from '@angular/material';
+	MatFormFieldModule, MatInputModule, MatSliderModule, MatStepperModule, MatDialogModule,
+	MatDatepickerModule, MatTooltipModule} from '@angular/material';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 import { ModuleRoutes, ModuleComponents, ModuleProviders } from './material.config';
 import { InfoPopupComponent } from './info-popup/info-popup.component';
@@ -18,9 +19,12 @@ import { InfoPopupComponent } from './info-popup/info-popup.component';
 		LayoutModule,
 		ReactiveFormsModule,
 		RouterModule.forChild(ModuleRoutes),
+
+		// Material modules
 		MatAutocompleteModule,
 		MatButtonModule,
 		MatCardModule,
+		MatDatepickerModule,
 		MatDialogModule,
 		MatFormFieldModule,
 		MatGridListModule,
@@ -28,6 +32,7 @@ import { InfoPopupComponent } from './info-popup/info-popup.component';
 		MatInputModule,
 		MatListModule,
 		MatMenuModule,
+		MatMomentDateModule,
 		MatPaginatorModule,
 		MatSidenavModule,
 		MatSliderModule,
@@ -36,6 +41,7 @@ import { InfoPopupComponent } from './info-popup/info-popup.component';
 		MatTableModule,
 		MatTabsModule,
 		MatToolbarModule,
+		MatTooltipModule,
 		MatTreeModule,
 	],
 	entryComponents: [ InfoPopupComponent ],
