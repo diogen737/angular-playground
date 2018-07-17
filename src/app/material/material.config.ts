@@ -17,6 +17,7 @@ export const ModuleRoutes: Routes = [
 		path: '',
 		component: MaterialComponent,
 		children: [
+			{ path: '', redirectTo: 'table', pathMatch: 'full' },
 			{ path: 'table', component: TableComponent },
 			{ path: 'dashboard', component: DashboardComponent },
 			{ path: 'tree', component: TreeComponent },

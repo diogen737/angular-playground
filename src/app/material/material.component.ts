@@ -7,10 +7,4 @@ import { Router, ActivatedRoute } from '@angular/router';
 	styleUrls: ['./material.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
-export class MaterialComponent {
-
-	constructor(private router: Router, private route: ActivatedRoute) {
-		this.router.navigate(['./misc'], { relativeTo: this.route }	);
-	}
-
-}
+export class MaterialComponent {}
