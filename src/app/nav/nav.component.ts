@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ObservableMedia } from '@angular/flex-layout';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { HandsetService } from '../shared/handset.service';
+import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app-nav',
@@ -7,14 +8,20 @@ import { ObservableMedia } from '@angular/flex-layout';
 	styleUrls: ['./nav.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
-export class NavComponent implements OnInit {
+export class NavComponent implements OnInit, OnDestroy {
 
+	private handsetSubscription: Subscription;
 	tooltipPosition: string;
 
-	constructor(private media: ObservableMedia) {}
+	constructor(private handsetService: HandsetService) {}
 
 	ngOnInit(): void {
-		this.media.subscribe(change => this.tooltipPosition = change.mqAlias === 'xs' ? 'above' : 'left');
+		this.handsetSubscription = this.handsetService.handsetSubject.subscribe(isHandset => {
+			this.tooltipPosition = isHandset ? 'above' : 'left';
+		});
 	}
 
+	ngOnDestroy(): void {
+		this.handsetSubscription.unsubscribe();
+	}
 }

@@ -1,6 +1,7 @@
-import { Component, ViewChild, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChild, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { MatSidenav, MatButton } from '@angular/material';
-import { ObservableMedia } from '@angular/flex-layout';
+import { HandsetService } from '../../shared/handset.service';
+import { Subscription, BehaviorSubject } from 'rxjs';
 
 @Component({
 	selector: 'app-material-nav',
@@ -8,28 +9,32 @@ import { ObservableMedia } from '@angular/flex-layout';
 	styleUrls: ['./nav.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
-export class NavComponent implements OnInit {
+export class NavComponent implements OnInit, OnDestroy {
 
 	@ViewChild('drawer') sidenav: MatSidenav;
-	@ViewChild('sidenavToggler') toggleBtn: MatButton;
-	isHandset: boolean;
-	private handsetViewports = ['xs', 'sm'];
+	@ViewChild('sidenavToggler') sidenavToggler: MatButton;
 
-	constructor(private media: ObservableMedia) {}
+	private handsetSubscription: Subscription;
+	private handsetSubject: BehaviorSubject<boolean>;
+
+	constructor(private handsetService: HandsetService) {}
 
 	ngOnInit(): void {
-		this.media.subscribe(changes => {
-			this.isHandset = this.handsetViewports.includes(changes.mqAlias);
-			this.sidenav.mode = this.isHandset ? 'over' : 'side';
-			this.sidenav.opened = ! this.isHandset;
-			this.toggleBtn.disabled = ! this.isHandset;
+		this.handsetSubject = this.handsetService.handsetSubject;
+		this.handsetSubscription = this.handsetSubject.subscribe(isHandset => {
+			this.sidenav.mode = isHandset ? 'over' : 'side';
+			this.sidenav.opened = ! isHandset;
+			this.sidenavToggler.disabled = ! isHandset;
 		});
 	}
 
 	toggleSidenav(): void {
-		if (this.isHandset) {
+		if (this.handsetSubject.value) {
 			this.sidenav.toggle();
 		}
 	}
 
+	ngOnDestroy(): void {
+		this.handsetSubscription.unsubscribe();
+	}
 }

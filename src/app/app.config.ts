@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { HandsetService } from './shared/handset.service';
 
 export const AppRoutes: Routes = [
 	{ path: '', pathMatch: 'full', redirectTo: 'material' },
@@ -17,4 +18,6 @@ export const AppComponents = [
 	NotFoundComponent
 ];
 
-export const AppProviders = [];
+export const AppProviders = [
+	HandsetService
+];
