@@ -6,6 +6,9 @@ import { RouterModule } from '@angular/router';
 import { MatIconModule, MatButtonModule, MatTooltipModule, MatSliderModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutes, AppComponents, AppProviders } from './app.config';
@@ -21,6 +24,10 @@ import { AppRoutes, AppComponents, AppProviders } from './app.config';
 		MatIconModule,
 		MatSliderModule,
 		MatTooltipModule,
+
+		AngularFireModule.initializeApp(environment.firebase),
+		AngularFireAuthModule
+
 	],
 	declarations: [ AppComponents	],
 	providers: [ AppProviders ],

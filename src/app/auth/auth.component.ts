@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+
+import { AuthService } from './providers/auth.service';
 
 @Component({
 	selector: 'app-auth',
 	templateUrl: './auth.component.html',
 	styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent {
 
-	constructor() { }
+	constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) {}
 
-	ngOnInit() {
+	tryGoogleLogin(): void {
+		this.authService.doGoogleAuth()
+			.then(res => {
+				console.log(res);
+				this.router.navigate(['/auth/user']);
+			}, err => console.log(err));
 	}
-
 }
