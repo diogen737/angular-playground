@@ -1,0 +1,11 @@
+<p>
+  {{ user?.name }}
+</p>
+
+<p>
+	<button type="button" (click)="tryLogout()">Google Logout</button>
+</p>
+<img src="{{ user?.image }}" alt="">
+<p>
+	<a routerLink="/auth">back</a>
+</p>
