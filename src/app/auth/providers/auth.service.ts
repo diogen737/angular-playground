@@ -21,12 +21,9 @@ export class AuthService {
 
 	doLogout(): Promise<void> {
 		return new Promise<void>((resolve, reject) => {
-			if (firebase.auth().currentUser) {
-				this.fireAuth.auth.signOut();
-				resolve();
-			} else {
-				reject();
-			}
+			firebase.auth().currentUser
+				? this.fireAuth.auth.signOut().then(_ => resolve())
+				: reject();
 		});
 	}
 
