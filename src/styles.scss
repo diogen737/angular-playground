@@ -4,6 +4,8 @@ body { margin: 0; }
 
 // Global variables
 
+$clr-google: #dd4b39;
+
 $screen-sm: 600px;
 $screen-md: 960px;
 $screen-lg: 1280px;
@@ -11,3 +13,9 @@ $screen-xl: 1920px;
 
 
 $nav-height: 3rem;
+
+// Global classes
+
+.bg-google {
+	background-color: $clr-google !important;
+}

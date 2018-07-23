@@ -1,7 +1,23 @@
-<p> auth works! </p>
-
-<button type="button" (click)="tryGoogleLogin()">Google Sign In</button>
-
-<p>
-	<a routerLink="/auth/user">user</a>
-</p>
+<div class="login-card-wrapper">
+	<mat-card>
+		<mat-card-header>
+			<mat-card-title><h3>Sign In form</h3></mat-card-title>
+			<!-- <mat-card-subtitle>subtitle</mat-card-subtitle> -->
+		</mat-card-header>
+		<mat-card-content>
+			<div class="social-row">
+				<button mat-mini-fab type="button" class="bg-google" (click)="tryGoogleLogin()">
+					<i class="fab fa-google"></i>
+				</button>
+				<button mat-mini-fab type="button" class="bg-google" (click)="tryGoogleLogin()">
+					<i class="fab fa-google"></i>
+				</button>
+	
+			</div>
+		</mat-card-content>
+		<mat-card-actions>
+			<button mat-raised-button color="primary">Ok</button>
+			<!-- <button mat-raised-button color="primary">Ok</button> -->
+		</mat-card-actions>
+	</mat-card>
+</div>

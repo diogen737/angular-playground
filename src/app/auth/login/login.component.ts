@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../providers/auth.service';
 
 @Component({
 	selector: 'app-auth-login',
 	templateUrl: './login.component.html',
-	styleUrls: ['./login.component.scss']
+	styleUrls: ['./login.component.scss'],
+	encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent {
 

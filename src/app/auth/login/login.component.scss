@@ -1,0 +1,25 @@
+@import 'src/styles.scss';
+
+.login-card-wrapper {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	height: calc(100vh - #{$nav-height});
+	width: 100%;
+
+	mat-card {
+		// height: 400px;
+		width: 300px;
+
+		.social-row {
+			display: flex;
+			justify-content: space-evenly;
+		}
+	}
+}
+
+@media screen and (min-width: $screen-md) {
+	.login-card-wrapper {
+		height: 100%;
+	}
+}
