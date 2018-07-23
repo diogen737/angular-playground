@@ -20,11 +20,14 @@ import { AppRoutes, AppComponents, AppProviders } from './app.config';
 		RouterModule.forRoot(AppRoutes),
 		FlexLayoutModule,
 		ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+
+		// Material modules
 		MatButtonModule,
 		MatIconModule,
 		MatSliderModule,
 		MatTooltipModule,
 
+		// Firebase modules
 		AngularFireModule.initializeApp(environment.firebase),
 		AngularFireAuthModule
 

@@ -1,1 +1,38 @@
-// TODO: remove html style !!!!!!!!
+@import 'src/styles.scss';
+
+.main-bg {
+	height: calc(100vh - #{$nav-height});
+	position: fixed;
+	width: 100%;
+
+	.img-not-found {
+		object-fit: cover;
+		height: 100%;
+		position: absolute;
+		width: 100%;
+		z-index: -1;
+	}
+
+	.message {
+		align-items: center;
+		background-color: rgba(0, 0, 0, 0.5);
+		color: white;
+		display: flex;
+		flex-direction: column;
+		font-family: 'Roboto', sans-serif;
+		justify-content: center;
+		height: 100%;
+		width: 100%;
+
+		.digits {
+			font-size: 7rem;
+			font-weight: 100;
+		}
+	}
+}
+
+@media screen and (min-width: $screen-md) {
+	.main-bg {
+		height: 100%;
+	}
+}
