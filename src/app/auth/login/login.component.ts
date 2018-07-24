@@ -28,4 +28,30 @@ export class LoginComponent {
 				}
 			});
 	}
+
+	tryFacebookLogin(): void {
+		this.authService.isLoggedIn()
+			.then(loggedIn => {
+				if (!loggedIn) {
+					this.authService.doFacebookAuth()
+						.then(res => this.router.navigateByUrl(this.redirectUrl),
+									err => console.log(err));
+				} else {
+					console.log('no login needed');
+				}
+			});
+	}
+
+	tryGithubLogin(): void {
+		this.authService.isLoggedIn()
+			.then(loggedIn => {
+				if (!loggedIn) {
+					this.authService.doGithubAuth()
+						.then(res => this.router.navigateByUrl(this.redirectUrl),
+									err => console.log(err));
+				} else {
+					console.log('no login needed');
+				}
+			});
+	}
 }

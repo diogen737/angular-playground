@@ -5,25 +5,22 @@
 	<mat-card>
 		<mat-card-header>
 			<mat-card-title><h3>Sign In form</h3></mat-card-title>
-			<!-- <mat-card-subtitle>subtitle</mat-card-subtitle> -->
 		</mat-card-header>
 		<mat-card-content>
 			<div class="social-row">
 				<button mat-mini-fab type="button" class="bg-google" (click)="tryGoogleLogin()">
 					<i class="fab fa-google"></i>
 				</button>
-				<button mat-mini-fab type="button" class="bg-google" (click)="tryGoogleLogin()">
-					<i class="fab fa-google"></i>
-				</button>
-				<!-- <button mat-mini-fab type="button" class="bg-facebook" (click)="tryGoogleLogin()">
+				<button mat-mini-fab type="button" class="bg-facebook" (click)="tryFacebookLogin()">
 					<i class="fab fa-facebook-f"></i>
-				</button> -->
-	
+				</button>
+				<button mat-mini-fab type="button" class="bg-github" (click)="tryGithubLogin()">
+					<i class="fab fa-github"></i>
+				</button>
 			</div>
 		</mat-card-content>
 		<mat-card-actions>
-			<button mat-raised-button color="primary">Ok</button>
-			<!-- <button mat-raised-button color="primary">Ok</button> -->
+			<a mat-raised-button routerLink="../" color="primary">Back</a>
 		</mat-card-actions>
 	</mat-card>
 </div>

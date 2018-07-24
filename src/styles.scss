@@ -9,6 +9,7 @@ body { margin: 0; }
 
 $clr-google: #dd4b39;
 $clr-facebook: #3b5998;
+$clr-github: #333;
 
 $screen-sm: 600px;
 $screen-md: 960px;
@@ -25,4 +26,7 @@ $nav-height: 3rem;
 }
 .bg-facebook {
 	background-color: $clr-facebook !important;
+}
+.bg-github {
+	background-color: $clr-github !important;
 }
