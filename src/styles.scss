@@ -8,6 +8,7 @@ body { margin: 0; }
 // Global variables
 
 $clr-google: #dd4b39;
+$clr-facebook: #3b5998;
 
 $screen-sm: 600px;
 $screen-md: 960px;
@@ -21,4 +22,7 @@ $nav-height: 3rem;
 
 .bg-google {
 	background-color: $clr-google !important;
+}
+.bg-facebook {
+	background-color: $clr-facebook !important;
 }

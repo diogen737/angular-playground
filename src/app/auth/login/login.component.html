@@ -1,4 +1,7 @@
 <div class="login-card-wrapper">
+	<img srcset="/assets/img/login-bg-1024.jpg 1024w,
+							 /assets/img/login-bg-768.jpg 768w"
+		class="login-bg" alt="Login page decorative background">
 	<mat-card>
 		<mat-card-header>
 			<mat-card-title><h3>Sign In form</h3></mat-card-title>
@@ -12,6 +15,9 @@
 				<button mat-mini-fab type="button" class="bg-google" (click)="tryGoogleLogin()">
 					<i class="fab fa-google"></i>
 				</button>
+				<!-- <button mat-mini-fab type="button" class="bg-facebook" (click)="tryGoogleLogin()">
+					<i class="fab fa-facebook-f"></i>
+				</button> -->
 	
 			</div>
 		</mat-card-content>
