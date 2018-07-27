@@ -6,9 +6,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HandsetService } from './shared/handset.service';
 
 export const AppRoutes: Routes = [
-	{ path: '', pathMatch: 'full', redirectTo: 'auth' },
+	{ path: '', pathMatch: 'full', redirectTo: 'charts' },
 	{ path: 'material', loadChildren: './material/material.module#MaterialModule' },
 	{ path: 'auth', loadChildren: './auth/auth.module#AuthModule' },
+	{ path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
 	{ path: '**', component: NotFoundComponent }
 ];
 
