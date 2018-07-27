@@ -1,0 +1,6 @@
+<div class="charts-wrapper">
+	<h2>Chart master component (smart)</h2>
+	<span *ngIf="selectedCompanyId !== undefined"> Selected company's ID: {{ selectedCompanyId }}</span>
+	<app-chart-display (companySelected)="onCompanySelected($event)"></app-chart-display>
+
+</div>
