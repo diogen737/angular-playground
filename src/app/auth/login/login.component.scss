@@ -21,6 +21,19 @@
 		// height: 400px;
 		width: 300px;
 
+		.mat-card-actions, .mat-card-header {
+			display: flex;
+			justify-content: center;
+		}
+		.signin-form {
+			align-items: center;
+			display: flex;
+			flex-direction: column;
+
+			.signin-field {
+				width: 80%;
+			}
+		}
 		.social-row {
 			display: flex;
 			justify-content: space-evenly;

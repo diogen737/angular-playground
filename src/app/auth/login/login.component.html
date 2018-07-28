@@ -7,6 +7,21 @@
 			<mat-card-title><h3>Sign In form</h3></mat-card-title>
 		</mat-card-header>
 		<mat-card-content>
+			<form class="signin-form" [formGroup]="signInForm">
+				<mat-form-field class="signin-field">
+					<input matInput placeholder="Email" formControlName="email" required>
+					<mat-error *ngIf="email.hasError('required')">The field is required</mat-error>
+					<mat-error *ngIf="email.hasError('email') && !email.hasError('required')">Email format is invalid</mat-error>
+				</mat-form-field>
+				<mat-form-field class="signin-field">
+					<input matInput placeholder="Password" type="password" formControlName="password" autocomplete="off" required>
+					<mat-error *ngIf="password.hasError('required')">The field is required</mat-error>
+				</mat-form-field>
+				<mat-card-actions>
+					<button mat-raised-button (click)="tryEmailLogin()" color="primary">Sign In</button>
+					<a mat-raised-button routerLink="../" color="accent">Back</a>
+				</mat-card-actions>
+			</form>
 			<div class="social-row">
 				<button mat-mini-fab type="button" class="bg-google" (click)="tryGoogleLogin()">
 					<i class="fab fa-google"></i>
@@ -19,8 +34,5 @@
 				</button>
 			</div>
 		</mat-card-content>
-		<mat-card-actions>
-			<a mat-raised-button routerLink="../" color="primary">Back</a>
-		</mat-card-actions>
 	</mat-card>
 </div>

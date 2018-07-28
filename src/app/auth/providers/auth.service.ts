@@ -35,6 +35,13 @@ export class AuthService {
 		});
 	}
 
+	doEmailAuth(email: string, pwd: string): Promise<any> {
+		return new Promise((resolve, reject) => {
+			this.fireAuth.auth.signInWithEmailAndPassword(email, pwd)
+				.then(res => resolve(res), err => reject(err));
+		});
+	}
+
 	doLogout(): Promise<void> {
 		return new Promise<void>((resolve, reject) => {
 			firebase.auth().currentUser
