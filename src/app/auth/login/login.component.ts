@@ -11,7 +11,7 @@ import { AuthService } from '../providers/auth.service';
 })
 export class LoginComponent {
 
-	public redirectUrl: string;
+	private redirectUrl: string;
 	signInForm: FormGroup = this.fb.group({
 		email: ['', [Validators.required, Validators.email]],
 		password: ['', Validators.required]
@@ -19,61 +19,34 @@ export class LoginComponent {
 
 	constructor(private fb: FormBuilder, private authService: AuthService,
 							private router: Router, private route: ActivatedRoute) {
-		this.redirectUrl = route.snapshot.queryParams['returnUrl'] || '/auth';
+		this.redirectUrl = this.route.snapshot.queryParams['returnUrl'] || '/auth';
 	}
 
 	tryGoogleLogin(): void {
-		this.authService.isLoggedIn()
-			.then(loggedIn => {
-				if (!loggedIn) {
-					this.authService.doGoogleAuth()
-						.then(res => this.router.navigateByUrl(this.redirectUrl),
-									err => console.log(err));
-				} else {
-					console.log('no login needed');
-				}
-			});
+		this.tryGivenLogin(this.authService.doGoogleAuth());
 	}
 
 	tryFacebookLogin(): void {
-		this.authService.isLoggedIn()
-			.then(loggedIn => {
-				if (!loggedIn) {
-					this.authService.doFacebookAuth()
-						.then(res => this.router.navigateByUrl(this.redirectUrl),
-									err => console.log(err));
-				} else {
-					console.log('no login needed');
-				}
-			});
+		this.tryGivenLogin(this.authService.doFacebookAuth());
 	}
 
 	tryGithubLogin(): void {
+		this.tryGivenLogin(this.authService.doGithubAuth());
+	}
+
+	tryEmailLogin(): void {
+		this.tryGivenLogin(this.authService.doEmailAuth(this.email.value, this.password.value));
+	}
+
+	private tryGivenLogin(loginActor: Promise<any>): void {
 		this.authService.isLoggedIn()
 			.then(loggedIn => {
 				if (!loggedIn) {
-					this.authService.doGithubAuth()
-						.then(res => this.router.navigateByUrl(this.redirectUrl),
-									err => console.log(err));
+					loginActor.then(res => this.router.navigateByUrl(this.redirectUrl), err => console.log(err));
 				} else {
 					console.log('no login needed');
 				}
 			});
-	}
-
-	tryEmailLogin(): void {
-		// console.log(this.signInForm);
-		this.authService.isLoggedIn()
-			.then(loggedIn => {
-				if (!loggedIn) {
-					this.authService.doEmailAuth(this.email.value, this.password.value)
-						.then(res => this.router.navigateByUrl(this.redirectUrl),
-									err => console.log(err));
-				} else {
-					console.log('no login needed');
-				}
-			})
-		// this.authService.doEmailAuth()
 	}
 
 	public get email(): AbstractControl { return this.signInForm.get('email'); }
