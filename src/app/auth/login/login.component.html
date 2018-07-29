@@ -1,7 +1,38 @@
-<p> auth works! </p>
-
-<button type="button" (click)="tryGoogleLogin()">Google Sign In</button>
-
-<p>
-	<a routerLink="/auth/user">user</a>
-</p>
+<div class="login-card-wrapper">
+	<img srcset="/assets/img/login-bg-1024.jpg 1024w,
+							 /assets/img/login-bg-768.jpg 768w"
+		class="login-bg" alt="Login page decorative background">
+	<mat-card>
+		<mat-card-header>
+			<mat-card-title><h3>Sign In form</h3></mat-card-title>
+		</mat-card-header>
+		<mat-card-content>
+			<form class="signin-form" [formGroup]="signInForm">
+				<mat-form-field class="signin-field">
+					<input matInput placeholder="Email" formControlName="email" required>
+					<mat-error *ngIf="email.hasError('required')">The field is required</mat-error>
+					<mat-error *ngIf="email.hasError('email') && !email.hasError('required')">Email format is invalid</mat-error>
+				</mat-form-field>
+				<mat-form-field class="signin-field">
+					<input matInput placeholder="Password" type="password" formControlName="password" autocomplete="off" required>
+					<mat-error *ngIf="password.hasError('required')">The field is required</mat-error>
+				</mat-form-field>
+				<mat-card-actions>
+					<button mat-raised-button (click)="tryEmailLogin()" color="primary">Sign In</button>
+					<a mat-raised-button routerLink="../" color="accent">Back</a>
+				</mat-card-actions>
+			</form>
+			<div class="social-row">
+				<button mat-mini-fab type="button" class="bg-google" (click)="tryGoogleLogin()">
+					<i class="fab fa-google"></i>
+				</button>
+				<button mat-mini-fab type="button" class="bg-facebook" (click)="tryFacebookLogin()">
+					<i class="fab fa-facebook-f"></i>
+				</button>
+				<button mat-mini-fab type="button" class="bg-github" (click)="tryGithubLogin()">
+					<i class="fab fa-github"></i>
+				</button>
+			</div>
+		</mat-card-content>
+	</mat-card>
+</div>

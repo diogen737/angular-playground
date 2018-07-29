@@ -1,0 +1,48 @@
+@import 'src/styles.scss';
+
+.login-card-wrapper {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	height: calc(100vh - #{$nav-height});
+	position: fixed;
+	width: 100%;
+
+	.login-bg {
+		filter: blur(2px);
+		height: 101%;
+		object-fit: cover;
+		position: absolute;
+		width: 101%;
+		z-index: -1;
+	}
+
+	mat-card {
+		// height: 400px;
+		width: 300px;
+
+		.mat-card-actions, .mat-card-header {
+			display: flex;
+			justify-content: center;
+		}
+		.signin-form {
+			align-items: center;
+			display: flex;
+			flex-direction: column;
+
+			.signin-field {
+				width: 80%;
+			}
+		}
+		.social-row {
+			display: flex;
+			justify-content: space-evenly;
+		}
+	}
+}
+
+@media screen and (min-width: $screen-md) {
+	.login-card-wrapper {
+		height: 100%;
+	}
+}

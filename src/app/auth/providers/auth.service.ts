@@ -19,11 +19,32 @@ export class AuthService {
 		});
 	}
 
+	doFacebookAuth(): Promise<any> {
+		return new Promise((resolve, reject) => {
+			const provider = new firebase.auth.FacebookAuthProvider();
+			this.fireAuth.auth.signInWithPopup(provider)
+				.then(res => resolve(res), err => reject(err));
+		});
+	}
+
+	doGithubAuth(): Promise<any> {
+		return new Promise((resolve, reject) => {
+			const provider = new firebase.auth.GithubAuthProvider();
+			this.fireAuth.auth.signInWithPopup(provider)
+				.then(res => resolve(res), err => reject(err));
+		});
+	}
+
+	doEmailAuth(email: string, pwd: string): Promise<any> {
+		return new Promise((resolve, reject) => {
+			this.fireAuth.auth.signInWithEmailAndPassword(email, pwd)
+				.then(res => resolve(res), err => reject(err));
+		});
+	}
+
 	doLogout(): Promise<void> {
 		return new Promise<void>((resolve, reject) => {
-			firebase.auth().currentUser
-				? this.fireAuth.auth.signOut().then(_ => resolve())
-				: reject();
+			firebase.auth().currentUser ? this.fireAuth.auth.signOut().then(_ => resolve()) : reject();
 		});
 	}
 
