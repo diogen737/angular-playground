@@ -1,6 +1,6 @@
 import { Component, ViewChild, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { MatSidenav, MatButton } from '@angular/material';
-import { HandsetService } from '../../shared/handset.service';
+import { HandsetService } from '../../shared/providers/handset.service';
 import { Subscription, BehaviorSubject } from 'rxjs';
 
 @Component({
