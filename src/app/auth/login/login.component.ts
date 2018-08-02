@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 
 import { AuthService } from '../providers/auth.service';
 import { AppNotificationService } from '../../shared/providers/app-notification.service';
+import { NotificationType } from '../../shared/model/notification-type';
+import { NotificationData } from '../../shared/model/notification-data';
 
 @Component({
 	selector: 'app-auth-login',
@@ -47,7 +49,7 @@ export class LoginComponent {
 				if (!loggedIn) {
 					loginActor().then(res => this.router.navigateByUrl(this.redirectUrl), err => console.log(err));
 				} else {
-					this.notificationService.notify('No login needed');
+					this.notificationService.notify(new NotificationData(NotificationType.ERROR, 'Info', 'No login needed'));
 				}
 			});
 	}

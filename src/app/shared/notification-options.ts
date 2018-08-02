@@ -6,5 +6,6 @@ export const NOTIFICATION_OPTIONS = {
 	clickToClose: true,
 	maxStack: 2,
 	preventDuplicates: false,
-	animate: 'fromBottom'
+	animate: 'fromBottom',
+	theClass: 'ntf'
 };
