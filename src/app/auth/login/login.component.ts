@@ -1,7 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+
 import { AuthService } from '../providers/auth.service';
+import { AppNotificationService } from '../../shared/providers/app-notification.service';
 
 @Component({
 	selector: 'app-auth-login',
@@ -18,33 +20,34 @@ export class LoginComponent {
 	});
 
 	constructor(private fb: FormBuilder, private authService: AuthService,
-							private router: Router, private route: ActivatedRoute) {
+							private router: Router, private route: ActivatedRoute,
+							private notificationService: AppNotificationService) {
 		this.redirectUrl = this.route.snapshot.queryParams['returnUrl'] || '/auth';
 	}
 
 	tryGoogleLogin(): void {
-		this.tryGivenLogin(this.authService.doGoogleAuth());
+		this.tryGivenLogin(this.authService.doGoogleAuth);
 	}
 
 	tryFacebookLogin(): void {
-		this.tryGivenLogin(this.authService.doFacebookAuth());
+		this.tryGivenLogin(this.authService.doFacebookAuth);
 	}
 
 	tryGithubLogin(): void {
-		this.tryGivenLogin(this.authService.doGithubAuth());
+		this.tryGivenLogin(this.authService.doGithubAuth);
 	}
 
 	tryEmailLogin(): void {
-		this.tryGivenLogin(this.authService.doEmailAuth(this.email.value, this.password.value));
+		this.tryGivenLogin(this.authService.doEmailAuth.bind(this, this.email.value, this.password.value));
 	}
 
-	private tryGivenLogin(loginActor: Promise<any>): void {
+	private tryGivenLogin(loginActor: (email?: string, pwd?: string) => Promise<any>): void {
 		this.authService.isLoggedIn()
 			.then(loggedIn => {
 				if (!loggedIn) {
-					loginActor.then(res => this.router.navigateByUrl(this.redirectUrl), err => console.log(err));
+					loginActor().then(res => this.router.navigateByUrl(this.redirectUrl), err => console.log(err));
 				} else {
-					console.log('no login needed');
+					this.notificationService.notify('No login needed');
 				}
 			});
 	}
