@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 
 import { AuthService } from '../providers/auth.service';
 import { AppNotificationService } from '../../shared/providers/app-notification.service';
+import { environment as env } from '../../../environments/environment';
 import { NotificationType } from '../../shared/model/notification-type';
 import { NotificationData } from '../../shared/model/notification-data';
 
@@ -39,17 +40,21 @@ export class LoginComponent {
 		this.tryGivenLogin(this.authService.doGithubAuth);
 	}
 
-	tryEmailLogin(): void {
-		this.tryGivenLogin(this.authService.doEmailAuth.bind(this, this.email.value, this.password.value));
+	tryEmailLogin(event: Event): void {
+		// prevent notification from showing up if the form is invalid
+		if (this.signInForm.valid) {
+			this.tryGivenLogin(this.authService.doEmailAuth.bind(this, this.email.value, this.password.value));
+		}
 	}
 
 	private tryGivenLogin(loginActor: (email?: string, pwd?: string) => Promise<any>): void {
 		this.authService.isLoggedIn()
 			.then(loggedIn => {
 				if (!loggedIn) {
-					loginActor().then(res => this.router.navigateByUrl(this.redirectUrl), err => console.log(err));
+					loginActor().then(_ => this.router.navigateByUrl(this.redirectUrl), err => console.log(err));
 				} else {
-					this.notificationService.notify(new NotificationData(NotificationType.ERROR, 'Info', 'No login needed'));
+					const ntfs = env.ntf.noSigninNeeded;
+					this.notificationService.notify(new NotificationData(NotificationType.INFO, ntfs.title, ntfs.msg));
 				}
 			});
 	}

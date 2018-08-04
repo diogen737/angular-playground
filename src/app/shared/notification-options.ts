@@ -4,8 +4,7 @@ export const NOTIFICATION_OPTIONS = {
 	showProgressBar: true,
 	pauseOnHover: true,
 	clickToClose: true,
-	maxStack: 2,
-	preventDuplicates: false,
+	maxStack: 1,
+	preventDuplicates: true,
 	animate: 'fromBottom',
-	theClass: 'ntf'
 };

@@ -1,7 +1,26 @@
 @import 'src/styles.scss';
 
-.ntf {
+.simple-notification {
+	color: #fff !important;
 	font-family: Roboto, sans-serif;
+
+	&.info {
+		background-color: $clr-info !important;
+
+		.sn-progress-loader span {
+			background-color: #eee !important;
+		}
+	}
+	&.error {
+		background-color: $clr-error !important;
+	}
+	&.warn {
+		background-color: $clr-warn !important;
+
+		div .sn-title, div .sn-content {
+			color: #fff !important;
+		}
+	}
 }
 
 .wrapper {

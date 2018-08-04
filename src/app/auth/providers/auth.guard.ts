@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { environment as env } from '../../../environments/environment';
 
 import { AuthService } from './auth.service';
 import { AppNotificationService } from '../../shared/providers/app-notification.service';
@@ -16,8 +17,8 @@ export class AuthGuard implements CanActivate {
 		return this.authService.isLoggedIn()
 			.then(loggedIn => {
 				if (!loggedIn) {
-					this.notificationService.notify(
-						new NotificationData(NotificationType.WARN, 'Warning', 'You need to sign in to access this resource'));
+					const ntfs = env.ntf.notAuthed;
+					this.notificationService.notify(new NotificationData(NotificationType.WARN, ntfs.title, ntfs.msg));
 					this.router.navigate(['/auth/login'], { queryParams: { returnUrl: state.url } });
 				}
 				return loggedIn;
