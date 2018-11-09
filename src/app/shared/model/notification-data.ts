@@ -1,4 +1,4 @@
-import { NotificationType } from './notification-type';
+import { NotificationType } from 'angular2-notifications';
 
 export class NotificationData {
 	private _type: NotificationType;

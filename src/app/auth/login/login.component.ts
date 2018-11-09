@@ -1,11 +1,11 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { NotificationType } from 'angular2-notifications';
 
 import { AuthService } from '../providers/auth.service';
 import { AppNotificationService } from '../../shared/providers/app-notification.service';
 import { environment as env } from '../../../environments/environment';
-import { NotificationType } from '../../shared/model/notification-type';
 import { NotificationData } from '../../shared/model/notification-data';
 
 @Component({
@@ -54,7 +54,7 @@ export class LoginComponent {
 					loginActor().then(_ => this.router.navigateByUrl(this.redirectUrl), err => console.log(err));
 				} else {
 					const ntfs = env.ntf.noSigninNeeded;
-					this.notificationService.notify(new NotificationData(NotificationType.INFO, ntfs.title, ntfs.msg));
+					this.notificationService.notify(new NotificationData(NotificationType.Info, ntfs.title, ntfs.msg));
 				}
 			});
 	}

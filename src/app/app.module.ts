@@ -7,8 +7,8 @@ import { MatIconModule, MatButtonModule, MatTooltipModule, MatSliderModule } fro
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
