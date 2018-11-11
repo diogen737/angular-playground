@@ -53,10 +53,9 @@ export class LoginComponent {
 				if (!loggedIn) {
 					loginActor()
 						.then(() => this.router.navigateByUrl(this.redirectUrl))
-						.catch(err => {
-							console.error(err);
+						.catch(() => {
 							const ntfs = env.ntf.networkError;
-							this.notificationService.notify(new NotificationData(NotificationType.Error, ntfs.title, err.message));
+							this.notificationService.notify(new NotificationData(NotificationType.Error, ntfs.title, ntfs.msg));
 						});
 				} else {
 					const ntfs = env.ntf.noSigninNeeded;
