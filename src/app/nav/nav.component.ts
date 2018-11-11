@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
-import { HandsetService } from '../shared/handset.service';
+import { HandsetService } from '../shared/providers/handset.service';
 import { Subscription } from 'rxjs';
 
 @Component({

@@ -6,11 +6,4 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 	styleUrls: ['./not-found.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
-export class NotFoundComponent implements OnInit {
-
-	constructor() { }
-
-	ngOnInit() {
-	}
-
-}
+export class NotFoundComponent {}

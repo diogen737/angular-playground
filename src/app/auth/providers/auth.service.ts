@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase';
 
 import { FirebaseUser } from '../model/firebase-user.model';
@@ -9,7 +9,7 @@ export class AuthService {
 
 	constructor(private fireAuth: AngularFireAuth) {}
 
-	doGoogleAuth(): Promise<any> {
+	public doGoogleAuth = (): Promise<any> => {
 		return new Promise((resolve, reject) => {
 			const provider = new firebase.auth.GoogleAuthProvider();
 			provider.addScope('profile');
@@ -19,7 +19,7 @@ export class AuthService {
 		});
 	}
 
-	doFacebookAuth(): Promise<any> {
+	public doFacebookAuth = (): Promise<any> => {
 		return new Promise((resolve, reject) => {
 			const provider = new firebase.auth.FacebookAuthProvider();
 			this.fireAuth.auth.signInWithPopup(provider)
@@ -27,7 +27,7 @@ export class AuthService {
 		});
 	}
 
-	doGithubAuth(): Promise<any> {
+	public doGithubAuth = (): Promise<any> => {
 		return new Promise((resolve, reject) => {
 			const provider = new firebase.auth.GithubAuthProvider();
 			this.fireAuth.auth.signInWithPopup(provider)
@@ -35,26 +35,26 @@ export class AuthService {
 		});
 	}
 
-	doEmailAuth(email: string, pwd: string): Promise<any> {
+	public doEmailAuth = (email: string, pwd: string): Promise<any> => {
 		return new Promise((resolve, reject) => {
 			this.fireAuth.auth.signInWithEmailAndPassword(email, pwd)
 				.then(res => resolve(res), err => reject(err));
 		});
 	}
 
-	doLogout(): Promise<void> {
+	public doLogout = (): Promise<void> => {
 		return new Promise<void>((resolve, reject) => {
 			firebase.auth().currentUser ? this.fireAuth.auth.signOut().then(_ => resolve()) : reject();
 		});
 	}
 
-	getCurrentUser(): Promise<FirebaseUser> {
+	public getCurrentUser = (): Promise<FirebaseUser> => {
 		return new Promise<FirebaseUser>((resolve, reject) => {
 			firebase.auth().onAuthStateChanged(user => user ? resolve(new FirebaseUser(user)) : reject());
 		});
 	}
 
-	isLoggedIn(): Promise<boolean> {
+	public isLoggedIn = (): Promise<boolean> => {
 		return new Promise<boolean>(resolve => {
 			firebase.auth().onAuthStateChanged(user => resolve(user !== null));
 		});

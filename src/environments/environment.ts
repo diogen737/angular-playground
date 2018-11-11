@@ -11,7 +11,21 @@ export const environment = {
 		projectId: 'ng-playground-diogen737',
 		storageBucket: 'ng-playground-diogen737.appspot.com',
 		messagingSenderId: '717958923709'
-	}
+	},
+	ntf: {
+		notAuthed: {
+			title: 'Not authenticated',
+			msg: 'You need to sign in to access the resource'
+		},
+		noSigninNeeded: {
+			title: 'Info',
+			msg: 'No sign in needed'
+		},
+		networkError: {
+			title: 'Network error',
+			msg: 'Check your internet connection'
+		},
+	},
 };
 
 /*
