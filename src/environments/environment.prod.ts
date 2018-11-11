@@ -16,6 +16,10 @@ export const environment = {
 		noSigninNeeded: {
 			title: 'Info',
 			msg: 'No sign in needed'
-		}
+		},
+		networkError: {
+			title: 'Network error',
+			msg: 'Check your internet connection'
+		},
 	},
 };
