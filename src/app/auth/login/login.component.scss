@@ -17,13 +17,27 @@
 		z-index: -1;
 	}
 
-	mat-card {
-		// height: 400px;
-		width: 300px;
+	.mat-tab-header {
+		background-color: whitesmoke;
+		border-radius: 5px;
+	}
 
-		.mat-card-actions, .mat-card-header {
+	mat-card {
+		width: 100%;
+		height: 300px;
+
+		.mat-card-actions, .mat-card-header, .signup-row {
 			display: flex;
 			justify-content: center;
+		}
+		.mat-card-actions > * {
+			display: flex;
+			flex-basis: 0;
+			flex-grow: 1;
+			justify-content: center;
+		}
+		.mat-card-header h3 {
+			margin: 0.5rem 0;
 		}
 		.signin-form {
 			align-items: center;
@@ -37,6 +51,7 @@
 		.social-row {
 			display: flex;
 			justify-content: space-evenly;
+			padding: 0.5rem;
 		}
 	}
 }

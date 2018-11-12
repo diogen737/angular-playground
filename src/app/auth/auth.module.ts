@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatCardModule, MatButtonModule, MatIconModule, MatInputModule } from '@angular/material';
+import { MatCardModule, MatButtonModule, MatIconModule, MatInputModule, MatTabsModule } from '@angular/material';
 
 import { ModuleRoutes, ModuleComponents, ModuleProviders } from './auth.config';
 
@@ -17,6 +17,7 @@ import { ModuleRoutes, ModuleComponents, ModuleProviders } from './auth.config';
 		MatCardModule,
 		MatIconModule,
 		MatInputModule,
+		MatTabsModule,
 	],
 	declarations: [ ModuleComponents ],
 	providers: [ ModuleProviders ]

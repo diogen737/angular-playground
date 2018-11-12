@@ -14,16 +14,14 @@ export class UserComponent implements OnInit {
 	user: FirebaseUser;
 
 	constructor(private authService: AuthService, private router: Router) {
-		authService.getCurrentUser().then(res => {
-			this.user = res;
-		}, err => {
-			console.log('no user logged in');
-		});
+		authService.getCurrentUser()
+			.then((res: FirebaseUser) => this.user = res);
 	}
 
 	ngOnInit() {}
 
 	tryLogout(): void {
-		this.authService.doLogout().then( res => this.router.navigate(['/auth']) );
+		this.authService.doLogout()
+			.then(() => this.router.navigate(['/auth']));
 	}
 }

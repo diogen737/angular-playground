@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
 import { NotificationType } from 'angular2-notifications';
 
 import { AuthService } from '../providers/auth.service';
@@ -17,6 +17,9 @@ import { NotificationData } from '../../shared/model/notification-data';
 export class LoginComponent {
 
 	private redirectUrl: string;
+
+	selectedTab = new FormControl(0);
+
 	signInForm: FormGroup = this.fb.group({
 		email: ['', [Validators.required, Validators.email]],
 		password: ['', Validators.required]
@@ -26,6 +29,11 @@ export class LoginComponent {
 							private router: Router, private route: ActivatedRoute,
 							private notificationService: AppNotificationService) {
 		this.redirectUrl = this.route.snapshot.queryParams['returnUrl'] || '/auth';
+	}
+
+	changeTab(event: MouseEvent, tabValue: number): void {
+		event.preventDefault();
+		this.selectedTab.setValue(tabValue);
 	}
 
 	tryGoogleLogin(): void {
@@ -42,6 +50,7 @@ export class LoginComponent {
 
 	tryEmailLogin(event: Event): void {
 		// prevent notification from showing up if the form is invalid
+		// TODO: bind this - WTF?
 		if (this.signInForm.valid) {
 			this.tryGivenLogin(this.authService.doEmailAuth.bind(this, this.email.value, this.password.value));
 		}
