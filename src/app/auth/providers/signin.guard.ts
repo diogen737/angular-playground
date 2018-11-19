@@ -15,8 +15,7 @@ export class SignInGuard implements CanActivate {
 	async canActivate(): Promise<boolean> {
 		const loggedIn = await this.authService.isLoggedIn();
 		if (loggedIn) {
-			const ntfs = env.ntf.alreadyAuthed;
-			this.notificationService.notify(new NotificationData(NotificationType.Warn, ntfs.title, ntfs.msg));
+			this.notificationService.notify('');
 			this.router.navigate(['/']);
 		}
 		return !loggedIn;

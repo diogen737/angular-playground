@@ -35,7 +35,6 @@ export class SigninComponent {
 							private router: Router, private route: ActivatedRoute,
 							private notificationService: AppNotificationService) {
 		this.redirectUrl = this.route.snapshot.queryParams['returnUrl'] || '/auth';
-		console.log([router.routerState, router.config]);
 	}
 
 	changeTab(event: MouseEvent, tabValue: number): void {
@@ -56,8 +55,6 @@ export class SigninComponent {
 	}
 
 	tryEmailLogin(): void {
-		// prevent notification from showing up if the form is invalid
-		// TODO: bind this - WTF?
 		if (this.signInForm.valid) {
 			this.tryGivenLogin(this.authService.doEmailAuth.bind(this, this.signinEmail.value, this.signinPassword.value));
 		}
@@ -65,34 +62,19 @@ export class SigninComponent {
 
 	trySignUp(): void {
 		if (this.signUpForm.valid) {
-			this.authService.isLoggedIn()
-				.then(loggedIn => {
-					if (!loggedIn) {
-						this.authService.doSignUp(this.siginupEmail.value, this.siginupPassword.value)
-							.then(res => console.log(res))
-							.catch(err => console.error(err));
-					} else {
-						const ntfs = env.ntf.noSigninNeeded;
-						this.notificationService.notify(new NotificationData(NotificationType.Info, ntfs.title, ntfs.msg));
-					}
-				});
+			this.authService.doSignUp(this.siginupEmail.value, this.siginupPassword.value)
+				.then(res => console.log(res))
+				.catch(err => console.error(err));
 		}
 	}
 
 	private tryGivenLogin(loginActor: (email?: string, pwd?: string) => Promise<any>): void {
-		this.authService.isLoggedIn()
-			.then(loggedIn => {
-				if (!loggedIn) {
-					loginActor()
-						.then(() => this.router.navigateByUrl(this.redirectUrl))
-						.catch(() => {
-							const ntfs = env.ntf.networkError;
-							this.notificationService.notify(new NotificationData(NotificationType.Error, ntfs.title, ntfs.msg));
-						});
-				} else {
-					const ntfs = env.ntf.noSigninNeeded;
-					this.notificationService.notify(new NotificationData(NotificationType.Info, ntfs.title, ntfs.msg));
-				}
+		loginActor()
+			.then(() => this.router.navigateByUrl(this.redirectUrl))
+			.catch(err => {
+				// console.log(err);
+				// const ntfs = env.ntf.networkError;
+				this.notificationService.notify(err.code); // new NotificationData(NotificationType.Error, ntfs.title, ntfs.msg));
 			});
 	}
 
