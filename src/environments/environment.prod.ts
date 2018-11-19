@@ -13,6 +13,10 @@ export const environment = {
 			title: 'Not authenticated',
 			msg: 'You need to sign in to access the resource'
 		},
+		alreadyAuthed: {
+			title: 'Already authenticated',
+			msg: 'No need for sign in'
+		},
 		noSigninNeeded: {
 			title: 'Info',
 			msg: 'No sign in needed'

@@ -9,6 +9,8 @@ export class AuthService {
 
 	constructor(private fireAuth: AngularFireAuth) {}
 
+	// TODO: replace 'any' in returning promises with appropriate types
+
 	public doGoogleAuth = (): Promise<any> => {
 		return new Promise((resolve, reject) => {
 			const provider = new firebase.auth.GoogleAuthProvider();
@@ -38,6 +40,13 @@ export class AuthService {
 	public doEmailAuth = (email: string, pwd: string): Promise<any> => {
 		return new Promise((resolve, reject) => {
 			this.fireAuth.auth.signInWithEmailAndPassword(email, pwd)
+				.then(res => resolve(res), err => reject(err));
+		});
+	}
+
+	public doSignUp = (email: string, pwd: string): Promise<any> => {
+		return new Promise((resolve, reject) => {
+			firebase.auth().createUserWithEmailAndPassword(email, pwd)
 				.then(res => resolve(res), err => reject(err));
 		});
 	}
