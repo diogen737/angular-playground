@@ -7,28 +7,35 @@ import { AuthService } from '../providers/auth.service';
 import { AppNotificationService } from '../../shared/providers/app-notification.service';
 import { environment as env } from '../../../environments/environment';
 import { NotificationData } from '../../shared/model/notification-data';
+import { matchValidator } from '../../shared/validators/match-validator';
 
 @Component({
 	selector: 'app-auth-login',
-	templateUrl: './login.component.html',
-	styleUrls: ['./login.component.scss'],
+	templateUrl: './signin.component.html',
+	styleUrls: ['./signin.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
-export class LoginComponent {
+export class SigninComponent {
 
 	private redirectUrl: string;
 
-	selectedTab = new FormControl(0);
+	selectedTab = new FormControl(1);
 
 	signInForm: FormGroup = this.fb.group({
 		email: ['', [Validators.required, Validators.email]],
 		password: ['', Validators.required]
 	});
+	signUpForm: FormGroup = this.fb.group({
+		email: ['', [Validators.required, Validators.email]],
+		password: ['', Validators.required],
+		passwordRepeat: ['', Validators.required]
+	}, { validator: matchValidator });
 
 	constructor(private fb: FormBuilder, private authService: AuthService,
 							private router: Router, private route: ActivatedRoute,
 							private notificationService: AppNotificationService) {
 		this.redirectUrl = this.route.snapshot.queryParams['returnUrl'] || '/auth';
+		console.log([router.routerState, router.config]);
 	}
 
 	changeTab(event: MouseEvent, tabValue: number): void {
@@ -48,11 +55,27 @@ export class LoginComponent {
 		this.tryGivenLogin(this.authService.doGithubAuth);
 	}
 
-	tryEmailLogin(event: Event): void {
+	tryEmailLogin(): void {
 		// prevent notification from showing up if the form is invalid
 		// TODO: bind this - WTF?
 		if (this.signInForm.valid) {
-			this.tryGivenLogin(this.authService.doEmailAuth.bind(this, this.email.value, this.password.value));
+			this.tryGivenLogin(this.authService.doEmailAuth.bind(this, this.signinEmail.value, this.signinPassword.value));
+		}
+	}
+
+	trySignUp(): void {
+		if (this.signUpForm.valid) {
+			this.authService.isLoggedIn()
+				.then(loggedIn => {
+					if (!loggedIn) {
+						this.authService.doSignUp(this.siginupEmail.value, this.siginupPassword.value)
+							.then(res => console.log(res))
+							.catch(err => console.error(err));
+					} else {
+						const ntfs = env.ntf.noSigninNeeded;
+						this.notificationService.notify(new NotificationData(NotificationType.Info, ntfs.title, ntfs.msg));
+					}
+				});
 		}
 	}
 
@@ -73,6 +96,10 @@ export class LoginComponent {
 			});
 	}
 
-	public get email(): AbstractControl { return this.signInForm.get('email'); }
-	public get password(): AbstractControl { return this.signInForm.get('password'); }
+	public get signinEmail(): AbstractControl { return this.signInForm.get('email'); }
+	public get signinPassword(): AbstractControl { return this.signInForm.get('password'); }
+
+	public get siginupEmail(): AbstractControl { return this.signUpForm.get('email'); }
+	public get siginupPassword(): AbstractControl { return this.signUpForm.get('password'); }
+	public get siginupPasswordRepeat(): AbstractControl { return this.signUpForm.get('passwordRepeat'); }
 }
