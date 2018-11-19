@@ -2,6 +2,6 @@
 <p>
 	<a routerLink="./user">user</a>
 </p>
-<p>
+<p *ngIf="!signedIn">
 	<a routerLink="./signin">login</a>
 </p>
