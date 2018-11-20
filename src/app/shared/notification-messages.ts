@@ -8,5 +8,4 @@ export const NotificationMessages = {
 	networkError: new NotificationData(NotificationType.Error, 'Network error', 'Check your internet connection'),
 	noSigninNeeded: new NotificationData(NotificationType.Info, 'Info', 'No sign in needed'),
 	notAuthed: new NotificationData(NotificationType.Warn, 'Not authenticated', 'You need to sign in to access the resource'),
-	userNotFound: new NotificationData(NotificationType.Error, 'User not found', 'Perhaps you provided wrong credentials'),
 };

@@ -71,11 +71,7 @@ export class SigninComponent {
 	private tryGivenLogin(loginActor: (email?: string, pwd?: string) => Promise<any>): void {
 		loginActor()
 			.then(() => this.router.navigateByUrl(this.redirectUrl))
-			.catch(err => {
-				// console.log(err);
-				// const ntfs = env.ntf.networkError;
-				this.notificationService.notify(err.code); // new NotificationData(NotificationType.Error, ntfs.title, ntfs.msg));
-			});
+			.catch(err => this.notificationService.notify(err.code));
 	}
 
 	public get signinEmail(): AbstractControl { return this.signInForm.get('email'); }

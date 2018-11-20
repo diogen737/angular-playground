@@ -14,13 +14,16 @@ export class AppNotificationService {
 		let ntf: NotificationData;
 
 		const notificationData = {
-			'auth/user-not-found': () => ntf = NotificationMessages.userNotFound,
+			'auth/user-not-found': () => ntf = NotificationMessages.credentialsError,
 			'auth/wrong-password': () => ntf = NotificationMessages.credentialsError,
+			'auth/invalid-email': () => ntf = NotificationMessages.credentialsError,
+			'auth/not-authed': () => ntf = NotificationMessages.notAuthed,
+			'auth/no-signin-needed': () => ntf = NotificationMessages.noSigninNeeded,
+
+			'auth/network-request-failed': () => ntf = NotificationMessages.networkError,
+
 			'default': () => ntf = NotificationMessages.commonError
 		};
-
-		console.log(code);
-		console.log(notificationData[code]);
 
 		(notificationData[code] || notificationData['default'])();
 

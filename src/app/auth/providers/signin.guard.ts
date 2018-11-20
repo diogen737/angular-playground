@@ -15,7 +15,7 @@ export class SignInGuard implements CanActivate {
 	async canActivate(): Promise<boolean> {
 		const loggedIn = await this.authService.isLoggedIn();
 		if (loggedIn) {
-			this.notificationService.notify('');
+			this.notificationService.notify('auth/no-signin-needed');
 			this.router.navigate(['/']);
 		}
 		return !loggedIn;
