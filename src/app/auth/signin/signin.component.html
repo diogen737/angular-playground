@@ -41,16 +41,22 @@
 			<mat-card>
 				<mat-card-content>
 					<form class="signup-form" (ngSubmit)="trySignUp()" [formGroup]="signUpForm">
-						<mat-form-field class="signin-field">
+						<mat-form-field class="signup-field">
 							<input matInput placeholder="Email" formControlName="email" required>
 							<mat-error *ngIf="siginupEmail.hasError('required')">The field is required</mat-error>
 							<mat-error *ngIf="siginupEmail.hasError('email') && !siginupEmail.hasError('required')">Email format is invalid</mat-error>
 						</mat-form-field>
-						<mat-form-field class="signin-field">
+						<mat-form-field class="signup-field">
 							<input matInput placeholder="Password" type="password" formControlName="password" autocomplete="off" required>
 							<mat-error *ngIf="siginupPassword.hasError('required')">The field is required</mat-error>
+							<mat-error *ngIf="siginupPassword.hasError('forbidden') && !siginupPassword.hasError('required')"> 
+								Password is not complex enough
+								<div class="error-icon" matTooltip="{{PWD_HINT}}">
+									<mat-icon>contact_support</mat-icon>
+								</div>
+							</mat-error>
 						</mat-form-field>
-						<mat-form-field class="signin-field">
+						<mat-form-field class="signup-field">
 							<input matInput placeholder="Repeat password" type="password" formControlName="passwordRepeat" autocomplete="off" required>
 							<mat-error *ngIf="siginupPasswordRepeat.hasError('required')">The field is required</mat-error>
 							<mat-error *ngIf="siginupPasswordRepeat.hasError('nomatch')">Passwords do not match</mat-error>

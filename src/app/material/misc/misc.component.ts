@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { InfoPopupComponent } from '../info-popup/info-popup.component';
 import { regexAllowValidator } from '../../shared/validators/regexp-allow-validator';
 import { matchValidator } from '../../shared/validators/match-validator';
+import { PWD_PATTERN_STRONG, PWD_HINT_STRONG } from 'src/app/shared/auth-rules';
 
 @Component({
 	selector: 'app-misc',
@@ -17,12 +18,8 @@ import { matchValidator } from '../../shared/validators/match-validator';
 export class MiscComponent {
 
 	LOGIN_MIN_LENGTH = 3;
-	PWD_PATTERN_WEAK = /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{3,})/;
-	PWD_PATTERN_STRONG = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
-	PWD_HINT_WEAK = 'Password must be at least 3 chars long and contain any combination of lowercase/uppercase letters and digits';
-	PWD_HINT_STRONG = 'Password must be at least 8 chars long and contain lowercase/uppercase letters, digits and special symbols';
-	PWD_PATTERN = this.PWD_PATTERN_STRONG;
-	PWD_HINT = this.PWD_HINT_STRONG;
+	PWD_PATTERN = PWD_PATTERN_STRONG;
+	PWD_HINT = PWD_HINT_STRONG;
 	MIN_DATE = moment();
 
 	stepperGroup: FormGroup = this.fb.group({

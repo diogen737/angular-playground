@@ -1,13 +1,12 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
-import { NotificationType } from 'angular2-notifications';
 
 import { AuthService } from '../providers/auth.service';
 import { AppNotificationService } from '../../shared/providers/app-notification.service';
-import { environment as env } from '../../../environments/environment';
-import { NotificationData } from '../../shared/model/notification-data';
 import { matchValidator } from '../../shared/validators/match-validator';
+import { PWD_PATTERN_STRONG, PWD_HINT_STRONG } from 'src/app/shared/auth-rules';
+import { regexAllowValidator } from 'src/app/shared/validators/regexp-allow-validator';
 
 @Component({
 	selector: 'app-auth-login',
@@ -18,6 +17,8 @@ import { matchValidator } from '../../shared/validators/match-validator';
 export class SigninComponent {
 
 	private redirectUrl: string;
+	PWD_PATTERN = PWD_PATTERN_STRONG;
+	PWD_HINT = PWD_HINT_STRONG;
 
 	selectedTab = new FormControl(1);
 
@@ -27,7 +28,7 @@ export class SigninComponent {
 	});
 	signUpForm: FormGroup = this.fb.group({
 		email: ['', [Validators.required, Validators.email]],
-		password: ['', Validators.required],
+		password: ['', [Validators.required, regexAllowValidator(this.PWD_PATTERN)]],
 		passwordRepeat: ['', Validators.required]
 	}, { validator: matchValidator });
 
@@ -63,7 +64,7 @@ export class SigninComponent {
 	trySignUp(): void {
 		if (this.signUpForm.valid) {
 			this.authService.doSignUp(this.siginupEmail.value, this.siginupPassword.value)
-				.then(res => console.log(res))
+				.then(res => this.router.navigateByUrl(this.redirectUrl))
 				.catch(err => console.error(err));
 		}
 	}

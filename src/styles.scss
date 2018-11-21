@@ -32,3 +32,15 @@ $nav-height: 3rem;
 .bg-github {
 	background-color: $clr-github !important;
 }
+
+
+mat-error {
+	align-items: center;
+	display: flex !important;
+	justify-content: flex-start;
+
+	.error-icon {
+		cursor: pointer;
+		padding: 5px;
+	}
+}
