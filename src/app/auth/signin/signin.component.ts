@@ -43,36 +43,44 @@ export class SigninComponent {
 		this.selectedTab.setValue(tabValue);
 	}
 
-	tryGoogleLogin(): void {
-		this.tryGivenLogin(this.authService.doGoogleAuth);
+	tryGoogleSignin(): void {
+		this.tryGivenSignin(this.authService.doGoogleAuth);
 	}
 
-	tryFacebookLogin(): void {
-		this.tryGivenLogin(this.authService.doFacebookAuth);
+	tryFacebookSignin(): void {
+		this.tryGivenSignin(this.authService.doFacebookAuth);
 	}
 
-	tryGithubLogin(): void {
-		this.tryGivenLogin(this.authService.doGithubAuth);
+	tryGithubSignin(): void {
+		this.tryGivenSignin(this.authService.doGithubAuth);
 	}
 
-	tryEmailLogin(): void {
+	tryEmailSignin(): void {
 		if (this.signInForm.valid) {
-			this.tryGivenLogin(this.authService.doEmailAuth.bind(this, this.signinEmail.value, this.signinPassword.value));
+			this.tryGivenSignin(this.authService.doEmailAuth.bind(this, this.signinEmail.value, this.signinPassword.value));
 		}
 	}
 
 	trySignUp(): void {
-		// if (this.signUpForm.valid) {
-			// this.authService.doSignUp(this.siginupEmail.value, this.siginupPassword.value)
-		// 		.then(res => this.router.navigateByUrl(this.redirectUrl))
-		// 		.catch(err => console.error(err));
-		// }
-		this.authService.doAuthWithEmailLink(this.siginupEmail.value);
+		if (this.signUpForm.valid) {
+			this.authService.doSignUp(this.siginupEmail.value, this.siginupPassword.value)
+				.then(() => {
+					this.router.navigateByUrl(this.redirectUrl);
+					this.notificationService.notify('auth/verify-mail');
+				})
+				.catch(err => console.error(err));
+		}
+		// this.authService.doAuthWithEmailLink(this.siginupEmail.value);
 	}
 
-	private tryGivenLogin(loginActor: (email?: string, pwd?: string) => Promise<any>): void {
+	private tryGivenSignin(loginActor: (email?: string, pwd?: string) => Promise<any>): void {
 		loginActor()
-			.then(() => this.router.navigateByUrl(this.redirectUrl))
+			.then(res => {
+				if (res.additionalUserInfo.providerId === 'password' && !res.user.emailVerified) {
+					throw { code: 'auth/mail-not-verified' };
+				}
+				this.router.navigateByUrl(this.redirectUrl);
+			})
 			.catch(err => this.notificationService.notify(err.code));
 	}
 

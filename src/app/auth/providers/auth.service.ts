@@ -47,7 +47,10 @@ export class AuthService {
 	public doSignUp = (email: string, pwd: string): Promise<any> => {
 		return new Promise((resolve, reject) => {
 			firebase.auth().createUserWithEmailAndPassword(email, pwd)
-				.then(res => resolve(res), err => reject(err));
+				.then(() => firebase.auth().currentUser.sendEmailVerification())
+				.then(this.doSignOut)
+				.then(resolve)
+				.catch(err => reject(err));
 		});
 	}
 
@@ -92,9 +95,9 @@ export class AuthService {
 		});
 	}
 
-	public doLogout = (): Promise<void> => {
+	public doSignOut = (): Promise<void> => {
 		return new Promise<void>((resolve, reject) => {
-			firebase.auth().currentUser ? this.fireAuth.auth.signOut().then(_ => resolve()) : reject();
+			firebase.auth().currentUser ? this.fireAuth.auth.signOut().then(() => resolve()) : reject();
 		});
 	}
 
@@ -104,7 +107,7 @@ export class AuthService {
 		});
 	}
 
-	public isLoggedIn = (): Promise<boolean> => {
+	public isSignedIn = (): Promise<boolean> => {
 		return new Promise<boolean>(resolve => {
 			firebase.auth().onAuthStateChanged(user => resolve(user !== null));
 		});

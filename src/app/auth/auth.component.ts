@@ -6,16 +6,13 @@ import { AuthService } from './providers/auth.service';
 	templateUrl: './auth.component.html',
 	styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent {
 
 	signedIn: boolean;
 
 	constructor(private authService: AuthService) {
 		this.authService.checkLinkSignin()
-			.then(() => authService.isLoggedIn())
+			.then(authService.isSignedIn)
 			.then(signedIn => this.signedIn = signedIn);
-	}
-
-	ngOnInit(): void {
 	}
 }
