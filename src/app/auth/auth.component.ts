@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './providers/auth.service';
 
 @Component({
@@ -6,12 +6,16 @@ import { AuthService } from './providers/auth.service';
 	templateUrl: './auth.component.html',
 	styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit {
 
 	signedIn: boolean;
 
 	constructor(private authService: AuthService) {
-		authService.isLoggedIn()
+		this.authService.checkLinkSignin()
+			.then(() => authService.isLoggedIn())
 			.then(signedIn => this.signedIn = signedIn);
+	}
+
+	ngOnInit(): void {
 	}
 }

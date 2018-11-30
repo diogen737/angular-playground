@@ -62,11 +62,12 @@ export class SigninComponent {
 	}
 
 	trySignUp(): void {
-		if (this.signUpForm.valid) {
-			this.authService.doSignUp(this.siginupEmail.value, this.siginupPassword.value)
-				.then(res => this.router.navigateByUrl(this.redirectUrl))
-				.catch(err => console.error(err));
-		}
+		// if (this.signUpForm.valid) {
+			// this.authService.doSignUp(this.siginupEmail.value, this.siginupPassword.value)
+		// 		.then(res => this.router.navigateByUrl(this.redirectUrl))
+		// 		.catch(err => console.error(err));
+		// }
+		this.authService.doAuthWithEmailLink(this.siginupEmail.value);
 	}
 
 	private tryGivenLogin(loginActor: (email?: string, pwd?: string) => Promise<any>): void {

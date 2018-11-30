@@ -51,6 +51,47 @@ export class AuthService {
 		});
 	}
 
+	public doAuthWithEmailLink = (email: string): Promise<any> => {
+		return new Promise((resolve, reject) => {
+			const actionCodeSettings = {
+				url: window.location.origin,
+				handleCodeInApp: true
+			};
+			firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
+				.then(() => {
+					window.localStorage.setItem('emailForSignin', email);
+					resolve();
+				})
+				.catch(err => {
+					console.error(err);
+					reject();
+				});
+		});
+	}
+
+	public checkLinkSignin = (): Promise<any> => {
+		return new Promise((resolve, reject) => {
+			if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
+				let signinEmail = window.localStorage.getItem('emailForSignin');
+				if (!signinEmail) {
+					signinEmail = window.prompt('Please provide your email for confirmation');
+				}
+				firebase.auth().signInWithEmailLink(signinEmail, window.location.href)
+					.then(res => {
+						console.log(res);
+						window.localStorage.removeItem('emailForSignin');
+						resolve(res);
+					})
+					.catch(err => {
+						console.error(err);
+						reject(err);
+					});
+			} else {
+				resolve();
+			}
+		});
+	}
+
 	public doLogout = (): Promise<void> => {
 		return new Promise<void>((resolve, reject) => {
 			firebase.auth().currentUser ? this.fireAuth.auth.signOut().then(_ => resolve()) : reject();
