@@ -20,7 +20,7 @@ export class SigninComponent {
 	PWD_PATTERN = PWD_PATTERN_STRONG;
 	PWD_HINT = PWD_HINT_STRONG;
 
-	selectedTab = new FormControl(1);
+	selectedTab = new FormControl(0);
 
 	signInForm: FormGroup = this.fb.group({
 		email: ['', [Validators.required, Validators.email]],
@@ -65,7 +65,7 @@ export class SigninComponent {
 		if (this.signUpForm.valid) {
 			this.authService.doSignUp(this.siginupEmail.value, this.siginupPassword.value)
 				.then(() => {
-					this.router.navigateByUrl(this.redirectUrl);
+					this.router.navigateByUrl('/auth');
 					this.notificationService.notify('auth/verify-mail');
 				})
 				.catch(err => console.error(err));
@@ -77,6 +77,7 @@ export class SigninComponent {
 		loginActor()
 			.then(res => {
 				if (res.additionalUserInfo.providerId === 'password' && !res.user.emailVerified) {
+					this.authService.doSignOut();
 					throw { code: 'auth/mail-not-verified' };
 				}
 				this.router.navigateByUrl(this.redirectUrl);

@@ -17,9 +17,10 @@ export const NotificationMessages = {
 	notAuthed:
 		new NotificationData(NotificationType.Warn, 'Not authenticated', 'You need to sign in to access the resource'),
 	verifyEmail:
-		new NotificationData(NotificationType.Success, 'Activate your account', 'The activation E-mail was sent to you'),
+		new NotificationData(NotificationType.Success, 'Activate your account', 'The activation e-mail was sent to you'),
 	emailNotVerified:
-		new NotificationData(NotificationType.Warn, 'Activate your account', 'Check your E-mail for verification message'),
+		new NotificationData(NotificationType.Warn, 'Activate your account', 'Check your e-mail for verification message'),
+
 	// weakPassword:
 		// new NotificationData(NotificationType.Warn, 'Weak password', 'You need to sign in to access the resource'),
 };

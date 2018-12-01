@@ -65,10 +65,7 @@ export class AuthService {
 					window.localStorage.setItem('emailForSignin', email);
 					resolve();
 				})
-				.catch(err => {
-					console.error(err);
-					reject();
-				});
+				.catch(reject);
 		});
 	}
 
@@ -81,14 +78,10 @@ export class AuthService {
 				}
 				firebase.auth().signInWithEmailLink(signinEmail, window.location.href)
 					.then(res => {
-						console.log(res);
 						window.localStorage.removeItem('emailForSignin');
 						resolve(res);
 					})
-					.catch(err => {
-						console.error(err);
-						reject(err);
-					});
+					.catch(reject);
 			} else {
 				resolve();
 			}
@@ -96,8 +89,8 @@ export class AuthService {
 	}
 
 	public doSignOut = (): Promise<void> => {
-		return new Promise<void>((resolve, reject) => {
-			firebase.auth().currentUser ? this.fireAuth.auth.signOut().then(() => resolve()) : reject();
+		return new Promise<void>(resolve => {
+			this.fireAuth.auth.signOut().then(() => resolve());
 		});
 	}
 
