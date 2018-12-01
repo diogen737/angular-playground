@@ -4,7 +4,7 @@
 			 class="login-bg" alt="Login page decorative background">
 	<mat-tab-group [selectedIndex]="selectedTab.value"
 								 (selectedIndexChange)="selectedTab.setValue($event)">
-		<mat-tab label="Account login">
+		<mat-tab label="Sign In">
 			<mat-card>
 				<mat-card-content>
 					<div class="social-row">
@@ -49,7 +49,7 @@
 						<mat-form-field class="signup-field">
 							<input matInput placeholder="Password" type="password" formControlName="password" autocomplete="off" required>
 							<mat-error *ngIf="siginupPassword.hasError('required')">The field is required</mat-error>
-							<mat-error *ngIf="siginupPassword.hasError('forbidden') && !siginupPassword.hasError('required')"> 
+							<mat-error *ngIf="siginupPassword.hasError('forbidden') && !siginupPassword.hasError('required')">
 								Password is not complex enough
 								<div class="error-icon" matTooltip="{{PWD_HINT}}">
 									<mat-icon>contact_support</mat-icon>

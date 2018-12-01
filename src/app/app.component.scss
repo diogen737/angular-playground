@@ -1,8 +1,13 @@
 @import 'src/styles.scss';
 
+.simple-notification-wrapper.center {
+	width: 100%;
+}
+
 .simple-notification {
 	color: #fff !important;
 	font-family: Roboto, sans-serif;
+	text-align: center;
 
 	&.info {
 		background-color: $clr-info !important;
@@ -34,6 +39,10 @@
 }
 
 @media screen and (min-width: $screen-md) {
+	.simple-notification-wrapper.center {
+		width: 50%;
+	}
+
 	.wrapper {
 		flex-direction: row-reverse;
 		max-height: 100vh;
