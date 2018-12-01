@@ -47,13 +47,50 @@ export class AuthService {
 	public doSignUp = (email: string, pwd: string): Promise<any> => {
 		return new Promise((resolve, reject) => {
 			firebase.auth().createUserWithEmailAndPassword(email, pwd)
-				.then(res => resolve(res), err => reject(err));
+				.then(() => firebase.auth().currentUser.sendEmailVerification())
+				.then(this.doSignOut)
+				.then(resolve)
+				.catch(err => reject(err));
 		});
 	}
 
-	public doLogout = (): Promise<void> => {
-		return new Promise<void>((resolve, reject) => {
-			firebase.auth().currentUser ? this.fireAuth.auth.signOut().then(_ => resolve()) : reject();
+	public doAuthWithEmailLink = (email: string): Promise<any> => {
+		return new Promise((resolve, reject) => {
+			const actionCodeSettings = {
+				url: window.location.origin,
+				handleCodeInApp: true
+			};
+			firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
+				.then(() => {
+					window.localStorage.setItem('emailForSignin', email);
+					resolve();
+				})
+				.catch(reject);
+		});
+	}
+
+	public checkLinkSignin = (): Promise<any> => {
+		return new Promise((resolve, reject) => {
+			if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
+				let signinEmail = window.localStorage.getItem('emailForSignin');
+				if (!signinEmail) {
+					signinEmail = window.prompt('Please provide your email for confirmation');
+				}
+				firebase.auth().signInWithEmailLink(signinEmail, window.location.href)
+					.then(res => {
+						window.localStorage.removeItem('emailForSignin');
+						resolve(res);
+					})
+					.catch(reject);
+			} else {
+				resolve();
+			}
+		});
+	}
+
+	public doSignOut = (): Promise<void> => {
+		return new Promise<void>(resolve => {
+			this.fireAuth.auth.signOut().then(() => resolve());
 		});
 	}
 
@@ -63,7 +100,7 @@ export class AuthService {
 		});
 	}
 
-	public isLoggedIn = (): Promise<boolean> => {
+	public isSignedIn = (): Promise<boolean> => {
 		return new Promise<boolean>(resolve => {
 			firebase.auth().onAuthStateChanged(user => resolve(user !== null));
 		});

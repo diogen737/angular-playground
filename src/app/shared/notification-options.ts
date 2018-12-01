@@ -1,6 +1,6 @@
 export const NOTIFICATION_OPTIONS = {
 	position: ['top', 'center'],
-	timeOut: 3000,
+	timeOut: 4000,
 	showProgressBar: false,
 	pauseOnHover: false,
 	clickToClose: true,

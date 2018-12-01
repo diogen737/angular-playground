@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
 							private notificationService: AppNotificationService) {}
 
 	async canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-		const loggedIn = await this.authService.isLoggedIn();
+		const loggedIn = await this.authService.isSignedIn();
 		if (!loggedIn) {
 			this.notificationService.notify('auth/not-authed');
 			this.router.navigate(['/auth/signin'], { queryParams: { returnUrl: state.url } });

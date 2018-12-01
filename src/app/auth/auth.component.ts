@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './providers/auth.service';
 
 @Component({
@@ -11,7 +11,8 @@ export class AuthComponent {
 	signedIn: boolean;
 
 	constructor(private authService: AuthService) {
-		authService.isLoggedIn()
+		this.authService.checkLinkSignin()
+			.then(authService.isSignedIn)
 			.then(signedIn => this.signedIn = signedIn);
 	}
 }

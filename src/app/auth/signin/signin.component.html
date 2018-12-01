@@ -4,21 +4,21 @@
 			 class="login-bg" alt="Login page decorative background">
 	<mat-tab-group [selectedIndex]="selectedTab.value"
 								 (selectedIndexChange)="selectedTab.setValue($event)">
-		<mat-tab label="Account login">
+		<mat-tab label="Sign In">
 			<mat-card>
 				<mat-card-content>
 					<div class="social-row">
-						<button mat-mini-fab type="button" class="bg-google" (click)="tryGoogleLogin()">
+						<button mat-mini-fab type="button" class="bg-google" (click)="tryGoogleSignin()">
 							<i class="fab fa-google"></i>
 						</button>
-						<button mat-mini-fab type="button" class="bg-facebook" (click)="tryFacebookLogin()">
+						<button mat-mini-fab type="button" class="bg-facebook" (click)="tryFacebookSignin()">
 							<i class="fab fa-facebook-f"></i>
 						</button>
-						<button mat-mini-fab type="button" class="bg-github" (click)="tryGithubLogin()">
+						<button mat-mini-fab type="button" class="bg-github" (click)="tryGithubSignin()">
 							<i class="fab fa-github"></i>
 						</button>
 					</div>
-					<form class="signin-form" (ngSubmit)="tryEmailLogin()" [formGroup]="signInForm">
+					<form class="signin-form" (ngSubmit)="tryEmailSignin()" [formGroup]="signInForm">
 						<mat-form-field class="signin-field">
 							<input matInput placeholder="Email" formControlName="email" required>
 							<mat-error *ngIf="signinEmail.hasError('required')">The field is required</mat-error>
@@ -41,16 +41,22 @@
 			<mat-card>
 				<mat-card-content>
 					<form class="signup-form" (ngSubmit)="trySignUp()" [formGroup]="signUpForm">
-						<mat-form-field class="signin-field">
+						<mat-form-field class="signup-field">
 							<input matInput placeholder="Email" formControlName="email" required>
 							<mat-error *ngIf="siginupEmail.hasError('required')">The field is required</mat-error>
 							<mat-error *ngIf="siginupEmail.hasError('email') && !siginupEmail.hasError('required')">Email format is invalid</mat-error>
 						</mat-form-field>
-						<mat-form-field class="signin-field">
+						<mat-form-field class="signup-field">
 							<input matInput placeholder="Password" type="password" formControlName="password" autocomplete="off" required>
 							<mat-error *ngIf="siginupPassword.hasError('required')">The field is required</mat-error>
+							<mat-error *ngIf="siginupPassword.hasError('forbidden') && !siginupPassword.hasError('required')">
+								Password is not complex enough
+								<div class="error-icon" matTooltip="{{PWD_HINT}}">
+									<mat-icon>contact_support</mat-icon>
+								</div>
+							</mat-error>
 						</mat-form-field>
-						<mat-form-field class="signin-field">
+						<mat-form-field class="signup-field">
 							<input matInput placeholder="Repeat password" type="password" formControlName="passwordRepeat" autocomplete="off" required>
 							<mat-error *ngIf="siginupPasswordRepeat.hasError('required')">The field is required</mat-error>
 							<mat-error *ngIf="siginupPasswordRepeat.hasError('nomatch')">Passwords do not match</mat-error>

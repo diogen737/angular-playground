@@ -20,6 +20,11 @@
 	.mat-tab-header {
 		background-color: whitesmoke;
 		border-radius: 5px;
+		min-width: 260px;
+
+		.mat-tab-label {
+			width: 100%;
+		}
 	}
 
 	mat-card {
@@ -47,8 +52,11 @@
 			display: flex;
 			flex-direction: column;
 
-			.signin-field {
+			.signin-field, .signup-field {
 				width: 80%;
+			}
+			.signup-field:not(:last-of-type) {
+				margin-bottom: 0.8rem;
 			}
 		}
 		.social-row {

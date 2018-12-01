@@ -19,6 +19,9 @@ export class AppNotificationService {
 			'auth/invalid-email': () => ntf = NotificationMessages.credentialsError,
 			'auth/not-authed': () => ntf = NotificationMessages.notAuthed,
 			'auth/no-signin-needed': () => ntf = NotificationMessages.noSigninNeeded,
+			'auth/user-disabled': () => ntf = NotificationMessages.accoundDisabled,
+			'auth/verify-mail': () => ntf = NotificationMessages.verifyEmail,
+			'auth/mail-not-verified': () => ntf = NotificationMessages.emailNotVerified,
 
 			'auth/network-request-failed': () => ntf = NotificationMessages.networkError,
 
