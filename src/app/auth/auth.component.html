@@ -1,7 +1,16 @@
-<p> auth works! </p>
-<p>
-	<a routerLink="./user">user</a>
-</p>
-<p *ngIf="!signedIn">
-	<a routerLink="./signin">login</a>
-</p>
+<div class="landing-wrapper">
+	<img srcset="/assets/img/auth-section-landing-bg-1920.jpg 1920w,
+							 /assets/img/auth-section-landing-bg-1024.jpg 1024w,
+							 /assets/img/auth-section-landing-bg-768.jpg 768w"
+			 class="landing-bg" alt="Login page decorative background">
+
+	<div>
+		<p> auth works! </p>
+		<p>
+			<a routerLink="./user">user</a>
+		</p>
+		<p *ngIf="!signedIn">
+			<a routerLink="./signin">login</a>
+		</p>
+	</div>
+</div>

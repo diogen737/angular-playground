@@ -1,21 +1,6 @@
 @import 'src/styles.scss';
 
-.login-card-wrapper {
-	align-items: center;
-	display: flex;
-	justify-content: center;
-	height: calc(100vh - #{$nav-height});
-	position: fixed;
-	width: 100%;
-
-	.login-bg {
-		filter: blur(2px);
-		height: 101%;
-		object-fit: cover;
-		position: absolute;
-		width: 101%;
-		z-index: -1;
-	}
+.landing-wrapper {
 
 	.mat-tab-header {
 		background-color: whitesmoke;
@@ -64,11 +49,5 @@
 			justify-content: space-evenly;
 			padding: 0.5rem;
 		}
-	}
-}
-
-@media screen and (min-width: $screen-md) {
-	.login-card-wrapper {
-		height: 100%;
 	}
 }

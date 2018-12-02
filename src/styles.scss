@@ -35,8 +35,9 @@ $nav-height: 3rem;
 
 
 mat-error {
-	align-items: center;
 	display: flex !important;
+	
+	align-items: center;
 	justify-content: flex-start;
 
 	.error-icon {

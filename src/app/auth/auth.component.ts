@@ -4,7 +4,7 @@ import { AuthService } from './providers/auth.service';
 @Component({
 	selector: 'app-auth',
 	templateUrl: './auth.component.html',
-	styleUrls: ['./auth.component.scss']
+	styleUrls: ['./auth.component.scss', '../shared/styles/landing-bg.scss']
 })
 export class AuthComponent {
 
