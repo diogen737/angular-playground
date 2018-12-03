@@ -1,9 +1,6 @@
 @import 'src/styles.scss';
 
 .landing-wrapper {
-	align-items: center;
-	display: flex;
-	justify-content: center;
 	height: calc(100vh - #{$nav-height});
 	position: fixed;
 	width: 100%;
