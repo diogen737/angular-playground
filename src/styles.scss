@@ -34,9 +34,14 @@ $nav-height: 3rem;
 }
 
 
+.mat-warn {
+	color: #fff !important;
+}
+
 mat-error {
-	align-items: center;
 	display: flex !important;
+	
+	align-items: center;
 	justify-content: flex-start;
 
 	.error-icon {

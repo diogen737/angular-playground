@@ -1,0 +1,64 @@
+@import 'src/styles.scss';
+
+.landing-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.auth-main-section {
+		display: flex;
+		flex-direction: column;
+
+		.auth-actions {
+			display: flex;
+			justify-content: space-evenly;
+		}
+
+		.auth-header {
+			font-family: Roboto, sans-serif;
+			font-weight: 500;
+			font-size: 2em;
+			text-transform: uppercase;
+			color: #fff;
+
+			display: flex;
+			flex-direction: column;
+
+			span:last-of-type {
+				margin-bottom: 2rem;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: $screen-md - 1px) {
+	.auth-actions > * {
+		display: flex;
+		flex-basis: 0;
+		flex-grow: 1;
+		justify-content: center;
+		margin: 0 25px;
+	}
+}
+
+@media screen and (min-width: $screen-md) {
+	.landing-wrapper .auth-main-section {
+		flex-direction: row;
+		flex-basis: $screen-md;
+		justify-content: space-evenly;
+
+		.auth-actions {
+			flex-direction: column;
+			flex-basis: 150px;
+		}
+
+		.auth-header {
+			flex-basis: 400px;
+			
+			span {
+				&:first-of-type { margin-bottom: 2rem; }
+				&:last-of-type { margin: 0; }
+			}
+		}
+	}
+}

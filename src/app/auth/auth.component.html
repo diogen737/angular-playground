@@ -1,7 +1,17 @@
-<p> auth works! </p>
-<p>
-	<a routerLink="./user">user</a>
-</p>
-<p *ngIf="!signedIn">
-	<a routerLink="./signin">login</a>
-</p>
+<div class="landing-wrapper">
+	<img srcset="/assets/img/auth-section-landing-bg-1920.jpg 1920w,
+							 /assets/img/auth-section-landing-bg-1024.jpg 1024w,
+							 /assets/img/auth-section-landing-bg-768.jpg 768w"
+			 class="landing-bg" alt="Login page decorative background">
+
+	<div class="auth-main-section">
+		<div class="auth-header">
+			<span>auth section</span>
+			<span>angular + firebase</span>
+		</div>
+		<div class="auth-actions">
+			<a mat-raised-button color="accent" routerLink="./user">User</a>
+			<a mat-raised-button color="warn" routerLink="./signin" *ngIf="!signedIn">Sign In</a>
+		</div>
+	</div>
+</div>

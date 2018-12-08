@@ -11,7 +11,7 @@ import { regexAllowValidator } from 'src/app/shared/validators/regexp-allow-vali
 @Component({
 	selector: 'app-auth-login',
 	templateUrl: './signin.component.html',
-	styleUrls: ['./signin.component.scss'],
+	styleUrls: ['./signin.component.scss', '../../shared/styles/landing-bg.scss'],
 	encapsulation: ViewEncapsulation.None
 })
 export class SigninComponent {

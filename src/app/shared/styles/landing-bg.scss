@@ -1,0 +1,23 @@
+@import 'src/styles.scss';
+
+.landing-wrapper {
+	height: calc(100vh - #{$nav-height});
+	position: fixed;
+	width: 100%;
+
+	.landing-bg {
+		filter: blur(2px);
+		height: 101%;
+		object-fit: cover;
+		position: absolute;
+		width: 101%;
+		z-index: -1;
+	}
+}
+
+
+@media screen and (min-width: $screen-md) {
+	.landing-wrapper {
+		height: 100%;
+	}
+}
