@@ -2,8 +2,8 @@
 	<div class="nav-container">
 		<app-nav></app-nav>
 	</div>
-	<div class="content">
-		<router-outlet></router-outlet>
+	<div class="content" [@routerTransition]="getState(outlet)">
+		<router-outlet #outlet="outlet"></router-outlet>
 	</div>
 </div>
 <simple-notifications [options]="NOTIFICATION_OPTIONS"></simple-notifications>

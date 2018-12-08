@@ -4,12 +4,15 @@ import { NotificationsService, NotificationType } from 'angular2-notifications';
 import { NOTIFICATION_OPTIONS } from './shared/notification-options';
 import { AppNotificationService } from './shared/providers/app-notification.service';
 import { NotificationData } from './shared/model/notification-data';
+import { RouterOutlet } from '@angular/router';
+import { routerTransition } from './shared/animations';
 
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrls: [ './app.component.scss' ],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
+	animations: [ routerTransition ]
 })
 export class AppComponent implements OnInit {
 
@@ -22,5 +25,9 @@ export class AppComponent implements OnInit {
 		this.notifier.notificationStream$.subscribe((event: NotificationData) => {
 			this.notificationsService.create(event.title, event.content, event.type);
 		});
+	}
+
+	getState(outlet: RouterOutlet): string {
+		return outlet.activatedRouteData.state;
 	}
 }
