@@ -8,9 +8,23 @@ import { AuthGuard } from './providers/auth.guard';
 import { SignInGuard } from './providers/signin.guard';
 
 export const ModuleRoutes: Routes = [
-	{ path: '', component: AuthComponent, pathMatch: 'full' },
-	{ path: 'signin', component: SigninComponent, canActivate: [ SignInGuard ] },
-	{ path: 'user', component: UserComponent, canActivate: [ AuthGuard ] }
+	{
+		path: '',
+		component: AuthComponent,
+		pathMatch: 'full',
+		data: { state: 'auth-main' }
+	},
+	{
+		path: 'signin',
+		component: SigninComponent,
+		canActivate: [ SignInGuard ],
+		data: { state: 'auth-signin' }
+	},
+	{
+		path: 'user',
+		component: UserComponent,
+		canActivate: [ AuthGuard ]
+	}
 ];
 
 export const ModuleComponents = [
