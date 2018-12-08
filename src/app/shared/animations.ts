@@ -14,10 +14,10 @@ const slideToLeft = [
 	query(':leave', animateChild(), { optional: true }),
 	group([
 		query(':leave', [
-			animate('3000ms', style({ left: 'calc(-100% - 4rem)'}))
+			animate('300ms', style({ left: '-100%'}))
 		], { optional: true }),
 		query(':enter', [
-			animate('3000ms', style({ left: '0%'}))
+			animate('300ms', style({ left: '0%'}))
 		], { optional: true })
 	]),
 	query(':enter', animateChild(), { optional: true }),
@@ -37,10 +37,10 @@ const slideToRight = [
 	query(':leave', animateChild(), { optional: true }),
 	group([
 		query(':leave', [
-			animate('3000ms', style({ left: '100%'}))
+			animate('300ms', style({ left: '100%'}))
 		], { optional: true }),
 		query(':enter', [
-			animate('3000ms', style({ left: '0'}))
+			animate('300ms', style({ left: '0'}))
 		], { optional: true })
 	]),
 	query(':enter', animateChild(), { optional: true }),
