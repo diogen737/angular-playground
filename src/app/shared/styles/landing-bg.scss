@@ -6,12 +6,15 @@
 	width: 100%;
 
 	.landing-bg {
-		filter: blur(2px);
 		height: 101%;
 		object-fit: cover;
 		position: absolute;
 		width: 101%;
 		z-index: -1;
+	}
+	
+	.blurred {
+		filter: blur(2px);
 	}
 }
 
