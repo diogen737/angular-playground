@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthService } from './providers/auth.service';
 
 @Component({
 	selector: 'app-auth',
 	templateUrl: './auth.component.html',
-	styleUrls: ['./auth.component.scss', '../shared/styles/landing-bg.scss']
+	styleUrls: ['./auth.component.scss', '../shared/styles/landing-bg.scss'],
+	encapsulation: ViewEncapsulation.None
 })
 export class AuthComponent {
 
