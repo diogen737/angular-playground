@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import * as firebase from 'firebase';
-
-import { FirebaseUser } from '../model/firebase-user.model';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 
 @Injectable()
 export class AuthService {
@@ -94,9 +93,10 @@ export class AuthService {
 		});
 	}
 
-	public getCurrentUser = (): Promise<FirebaseUser> => {
-		return new Promise<FirebaseUser>((resolve, reject) => {
-			firebase.auth().onAuthStateChanged(user => user ? resolve(new FirebaseUser(user)) : reject());
+	public getCurrentUser = (): Promise<firebase.User> => {
+		return new Promise<firebase.User>((resolve, reject) => {
+			const user = firebase.auth().currentUser;
+			user ? resolve(user) : reject();
 		});
 	}
 
