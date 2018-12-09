@@ -8,7 +8,7 @@ import { User } from 'firebase';
 @Component({
 	selector: 'app-auth-user',
 	templateUrl: './account.component.html',
-	styleUrls: ['./account.component.scss']
+	styleUrls: ['./account.component.scss', '../../shared/styles/landing-bg.scss']
 })
 export class UserComponent implements OnInit {
 

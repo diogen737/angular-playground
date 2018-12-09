@@ -1,11 +1,38 @@
 <p>
-  {{ user?.email }}
-</p>
-
-<p>
 	<button type="button" (click)="tryLogout()">Google Logout</button>
 </p>
-<img src="{{ user?.photoURL }}" alt="">
-<p>
-	<a routerLink="/auth">back</a>
-</p>
+
+
+
+
+<aside class="profile-card">
+		<header>
+			<a target="_blank" href="#">
+				<img src="{{ user?.photoURL || './assets/img/avatar-not-found.png' }}" class="hoverZoomLink">
+			</a>
+			<h1> John Doe </h1>
+			<h2> Better Visuals </h2>
+		</header>
+
+		<div class="profile-bio">
+			<p> It takes monumental improvement for us to change how we live our lives. Design is the way we access that improvement. </p>
+		</div>
+
+		<ul class="profile-social-links">
+			<li>
+				<a target="_blank" href="https://www.facebook.com/creativedonut">
+					<i class="fab fa-facebook"></i>
+				</a>
+			</li>
+			<li>
+				<a target="_blank" href="https://twitter.com/dropyourbass">
+					<i class="fab fa-twitter"></i>
+				</a>
+			</li>
+			<li>
+				<a target="_blank" href="https://github.com/vipulsaxena">
+					<i class="fab fa-github"></i>
+				</a>
+			</li>
+		</ul>
+	</aside>
