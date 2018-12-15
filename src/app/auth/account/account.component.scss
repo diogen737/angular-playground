@@ -33,7 +33,6 @@
 		.name	{
 			font-size: 2rem;
 		}
-
 		.grid-label {
 			flex: 1 50%;
 			margin-top: 1rem;
@@ -41,8 +40,42 @@
 			text-align: center;
 		}
 	}
-
 	.actions {
 		margin-top: 1rem; 
+	}
+}
+
+@media screen and (min-width: $screen-sm) {
+	.profile {
+		flex-flow: row wrap;		
+		align-items: flex-start;
+		align-content: flex-start;
+
+		.image {
+			max-width: 200px;
+			margin-left: 1rem;
+			flex: 50%;
+		}
+		.info {
+			flex: 1 50%;
+
+			.grid-label {
+				padding: 0 0.5rem;
+
+				&:nth-of-type(even) {
+					text-align: left;
+				}
+				&:nth-of-type(odd) {
+					text-align: right;
+				}
+			}
+		}
+		.actions {
+			flex: 1 100%;
+			display: flex;
+			justify-content: center;
+
+			margin-left: 200px;
+		}
 	}
 }
