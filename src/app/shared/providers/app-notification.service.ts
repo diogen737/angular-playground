@@ -22,6 +22,7 @@ export class AppNotificationService {
 			'auth/user-disabled': () => ntf = NotificationMessages.accoundDisabled,
 			'auth/verify-mail': () => ntf = NotificationMessages.verifyEmail,
 			'auth/mail-not-verified': () => ntf = NotificationMessages.emailNotVerified,
+			'auth/email-already-in-use': () => ntf = NotificationMessages.emailInUse,
 
 			'auth/network-request-failed': () => ntf = NotificationMessages.networkError,
 

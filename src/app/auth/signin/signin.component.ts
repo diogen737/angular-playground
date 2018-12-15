@@ -68,7 +68,7 @@ export class SigninComponent {
 					this.router.navigateByUrl('/auth');
 					this.notificationService.notify('auth/verify-mail');
 				})
-				.catch(err => console.error(err));
+				.catch(err => this.notificationService.notify(err.code));
 		}
 		// this.authService.doAuthWithEmailLink(this.siginupEmail.value);
 	}

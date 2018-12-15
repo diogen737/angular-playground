@@ -9,8 +9,16 @@
 		height: 101%;
 		object-fit: cover;
 		position: absolute;
+
+		left: -3px;
+		top: -3px;
+		height: 101%;
 		width: 101%;
+
+		object-fit: cover;
 		z-index: -1;
+
+		filter: blur(2px);
 	}
 	
 	.blurred {

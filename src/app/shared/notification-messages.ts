@@ -10,6 +10,8 @@ export const NotificationMessages = {
 		new NotificationData(NotificationType.Error, 'Error', 'Some error occured'),
 	credentialsError:
 		new NotificationData(NotificationType.Error, 'Wrong credentials', 'Please provide valid sign in credentials'),
+	emailInUse:
+		new NotificationData(NotificationType.Error, 'Wrong credentials', 'The email address is already in use by another account'),
 	networkError:
 		new NotificationData(NotificationType.Error, 'Network error', 'Check your internet connection'),
 	noSigninNeeded:
