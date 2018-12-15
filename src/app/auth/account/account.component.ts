@@ -1,28 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthService } from '../providers/auth.service';
-import { FirebaseUser } from '../model/firebase-user.model';
 import { User } from 'firebase';
+
+import * as moment from 'moment';
 
 @Component({
 	selector: 'app-auth-user',
 	templateUrl: './account.component.html',
-	styleUrls: ['./account.component.scss', '../../shared/styles/landing-bg.scss']
+	styleUrls: ['./account.component.scss', '../../shared/styles/landing-bg.scss'],
+	encapsulation: ViewEncapsulation.None
 })
-export class UserComponent implements OnInit {
+export class UserComponent {
 
 	user: User;
+	lastSignInTime: moment.Moment;
+	creationTime: moment.Moment;
+	signinMethod: string;
 
 	constructor(private authService: AuthService, private router: Router) {
 		authService.getCurrentUser()
 			.then((res: User) => {
-				console.log(res);
 				this.user = res;
+				this.lastSignInTime = moment(this.user.metadata.lastSignInTime);
+				this.creationTime = moment(this.user.metadata.creationTime);
+				this.signinMethod = res.providerData[0].providerId;
 			});
 	}
-
-	ngOnInit() {}
 
 	tryLogout(): void {
 		this.authService.doSignOut()
