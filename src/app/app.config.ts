@@ -15,15 +15,15 @@ export const AppRoutes: Routes = [
 	},
 	{
 		path: 'material',
-		loadChildren: './material/material.module#MaterialModule'
+		loadChildren: () => import('./material/material.module').then(m => m.MaterialModule)
 	},
 	{
 		path: 'auth',
-		loadChildren: './auth/auth.module#AuthModule'
+		loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
 	},
 	{
 		path: 'charts',
-		loadChildren: './charts/charts.module#ChartsModule'
+		loadChildren: () => import('./charts/charts.module').then(m => m.ChartsModule)
 	},
 	{
 		path: '**',
