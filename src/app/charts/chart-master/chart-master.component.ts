@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
-import { CompaniesService } from '../providers/companies.service';
-import { Company } from '../model/company';
-import { ChartDisplayComponent } from '../chart-display/chart-display.component';
+import { Company } from '@model/company';
+import { companyToItem } from '@model/utils';
+import { Item } from '@model/item';
 
-import { companyToItem } from '../model/utils';
+import { CompaniesService } from '@providers/companies.service';
+
 
 @Component({
 	selector: 'app-charts',
@@ -14,9 +15,10 @@ import { companyToItem } from '../model/utils';
 })
 export class ChartMasterComponent implements OnInit {
 
-	@ViewChild(ChartDisplayComponent) private displayComponent: ChartDisplayComponent;
+	public selectedCompanyId: number;
+	public items: Item[];
+
 	private companies: Company[];
-	selectedCompanyId: number;
 
 	constructor(private companiesService: CompaniesService) {}
 
@@ -24,7 +26,7 @@ export class ChartMasterComponent implements OnInit {
 		this.companiesService.getCompanies()
 			.subscribe((data: Company[]) => {
 				this.companies = data.filter(company => company.monthRevenue > 0);
-				this.displayComponent.items = this.companies.map(company => companyToItem(company));
+				this.items = this.companies.map(company => companyToItem(company));
 			});
 	}
 

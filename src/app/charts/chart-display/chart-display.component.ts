@@ -1,18 +1,20 @@
-import { Component, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Output, EventEmitter, Input, ChangeDetectionStrategy } from '@angular/core';
 
-import { Item } from '../model/item';
+import { Item } from '@model/item';
+
 
 @Component({
 	selector: 'app-chart-display',
 	templateUrl: './chart-display.component.html',
 	styleUrls: ['./chart-display.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartDisplayComponent implements OnInit {
 
-	@Output() companySelected = new EventEmitter<number>();
+	@Input() private items: Item[];
+	@Output() private companySelected = new EventEmitter<number>();
 
-	items: Item[];
 	itemCategories: string[] = ['All'];
 	itemNames: string[] = ['All'];
 	selectedCategory = 'All';
@@ -39,20 +41,21 @@ export class ChartDisplayComponent implements OnInit {
 		});
 
 		this.fillNames();
-		this.fillViewData();				// prepare data for the chart
+		this.fillViewData();		// prepare data for the chart
 		this.calculateBalances();
+		this._cdr.detectChanges();
 	}
 
 	onCategoryChange(): void {
 		this.selectedName = 'All';	// reset name selector
-		this.fillNames();						// refill
-		this.fillViewData();				// refill
-		this.calculateBalances();		// recalculate
+		this.fillNames();			// refill
+		this.fillViewData();		// refill
+		this.calculateBalances();	// recalculate
 	}
 
 	onNameChange(): void {
 		this.fillViewData();
-		this.calculateBalances();		// recalculate
+		this.calculateBalances();	// recalculate
 	}
 
 	onOpen(): void {
@@ -65,7 +68,7 @@ export class ChartDisplayComponent implements OnInit {
 
 	private fillViewData(): void {
 		// reset all values, we'll fill them all later; 0.0000000001 is for d3 bug with 0-values
-		this.viewData.forEach(day => day.value = 0.0000000001);
+		this.viewData.forEach(day => day.value = 0.01);
 		const item = this.getSelectedItem();
 		if (item === null) {	// all companies selected
 			// refill view data values

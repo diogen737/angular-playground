@@ -4,7 +4,7 @@ import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree'
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { Observable, of as observableOf } from 'rxjs';
 
-import { FileDatabase, FileNode, FileFlatNode } from '@model/data';
+import { FileDatabase, FileNode, FileFlatNode } from '@model/material-data';
 
 
 @Component({

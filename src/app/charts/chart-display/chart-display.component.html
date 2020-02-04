@@ -3,17 +3,21 @@
 	<div class="selectors-bar">
 		<mat-form-field class="selector">
 			<mat-select placeholder="Category" [(value)]="selectedCategory" (selectionChange)="onCategoryChange()">
-				<mat-option *ngFor="let item of itemCategories" [value]="item"> {{item}} </mat-option>
+				<mat-option *ngFor="let item of itemCategories" [value]="item">{{ item }}</mat-option>
 			</mat-select>
 		</mat-form-field>
 		<mat-form-field class="selector">
 			<mat-select placeholder="Company" [(value)]="selectedName" (selectionChange)="onNameChange()">
-				<mat-option *ngFor="let name of itemNames" [value]="name"> {{name}} </mat-option>
+				<mat-option *ngFor="let name of itemNames" [value]="name">{{ name }}</mat-option>
 			</mat-select>
 		</mat-form-field>
 	</div>
 	<div class="chart-bar">
-		<ngx-charts-bar-vertical [results]="viewData" [xAxis]="true" [yAxis]="true" [showGridLines]="true"></ngx-charts-bar-vertical>
+		<ngx-charts-bar-vertical [results]="viewData"
+								 [xAxis]="true"
+								 [yAxis]="true"
+								 [showGridLines]="true">
+		</ngx-charts-bar-vertical>
 	</div>
 	<div class="data-bar">
 		<span> Month: {{ monthBalance }} </span>

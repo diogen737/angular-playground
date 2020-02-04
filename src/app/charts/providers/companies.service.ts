@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { COMPANIES } from './data';
-import { Company } from '../model/company';
+import { COMPANIES } from '@model/data';
+import { Company } from '@model/company';
+
 
 @Injectable()
 export class CompaniesService {
