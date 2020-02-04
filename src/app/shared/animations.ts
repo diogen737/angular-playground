@@ -1,4 +1,4 @@
-import {trigger, animate, style, group, animateChild, query, transition} from '@angular/animations';
+import { trigger, animate, style, group, animateChild, query, transition } from '@angular/animations';
 
 const slideToLeft = [
 	style({ position: 'relative' }),

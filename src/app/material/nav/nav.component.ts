@@ -15,8 +15,8 @@ import { HandsetService } from '@providers/handset.service';
 })
 export class NavComponent implements OnInit, OnDestroy {
 
-	@ViewChild('drawer') sidenav: MatSidenav;
-	@ViewChild('sidenavToggler') sidenavToggler: MatButton;
+	@ViewChild('drawer', { static: true }) sidenav: MatSidenav;
+	@ViewChild('sidenavToggler', { static: true }) sidenavToggler: MatButton;
 
 	private handsetSubscription: Subscription;
 	private handsetSubject: BehaviorSubject<boolean>;
