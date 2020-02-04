@@ -16,9 +16,9 @@ yarn run start
 Or you can run the site in production mode:
 
 ```#!/bin/bash
-yarn
-ng build --prod
-node server.js
+yarn run build:prod
+http-server ./dist
 ```
 
-If you don't have `yarn` installed on your machine [check it out](https://yarnpkg.com/en/docs/install#debian-stable).
+- [Get `yarn`](https://yarnpkg.com/en/docs/install#debian-stable)
+- [Get `http-server`](https://www.npmjs.com/package/http-server)
