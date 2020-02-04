@@ -14,7 +14,7 @@ before_script:
   - yarn global add firebase-tools@latest
 script:
 - ng build --prod
-- firebase use --token $FIREBASE_TOKEN ng-playground-diogen737
+- firebase use --token $FIREBASE_TOKEN ng-yard
 - firebase deploy -m "build $TRAVIS_BUILD_ID" --non-interactive --token $FIREBASE_TOKEN
 cache:
   yarn: true

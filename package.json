@@ -1,5 +1,5 @@
 {
-  "name": "angular-playground",
+  "name": "ng-yard",
   "version": "0.0.0",
   "scripts": {
     "start": "ng serve",
