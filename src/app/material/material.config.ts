@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { MAT_DATE_FORMATS } from '@angular/material';
+import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 
 import { NavComponent } from './nav/nav.component';

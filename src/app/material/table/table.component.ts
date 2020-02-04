@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { MatPaginator, MatSort } from '@angular/material';
-import { TableDataSource } from './table-datasource';
+
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+
+import { TableDataSource } from '@model/table-datasource';
+
 
 @Component({
 	selector: 'app-table',

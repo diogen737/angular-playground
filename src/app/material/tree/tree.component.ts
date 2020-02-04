@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material';
+import { Component, ViewEncapsulation } from '@angular/core';
+
+import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { Observable, of as observableOf } from 'rxjs';
 
-import { FileDatabase, FileNode, FileFlatNode } from './data';
+import { FileDatabase, FileNode, FileFlatNode } from '@model/data';
+
 
 @Component({
 	selector: 'app-tree',

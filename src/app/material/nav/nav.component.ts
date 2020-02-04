@@ -1,7 +1,11 @@
 import { Component, ViewChild, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
-import { MatSidenav, MatButton } from '@angular/material';
-import { HandsetService } from '../../shared/providers/handset.service';
+
+import { MatButton } from '@angular/material/button';
+import { MatSidenav } from '@angular/material/sidenav';
 import { Subscription, BehaviorSubject } from 'rxjs';
+
+import { HandsetService } from '@providers/handset.service';
+
 
 @Component({
 	selector: 'app-material-nav',
