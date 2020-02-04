@@ -16,9 +16,8 @@ export class NavComponent implements OnInit, OnDestroy {
 	constructor(private handsetService: HandsetService) {}
 
 	ngOnInit(): void {
-		this.handsetSubscription = this.handsetService.handsetSubject.subscribe(isHandset => {
-			this.tooltipPosition = isHandset ? 'above' : 'left';
-		});
+		this.handsetSubscription = this.handsetService.handsetSubject
+			.subscribe(isHandset => this.tooltipPosition = isHandset ? 'above' : 'left');
 	}
 
 	ngOnDestroy(): void {
