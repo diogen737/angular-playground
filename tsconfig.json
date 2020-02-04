@@ -26,6 +26,6 @@
         "src/app/charts/providers/*",
         "src/app/shared/providers/*",
       ]
-  }
+    }
   }
 }

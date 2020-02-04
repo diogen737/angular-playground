@@ -43,7 +43,6 @@ export class ChartDisplayComponent implements OnInit {
 		this.fillNames();
 		this.fillViewData();		// prepare data for the chart
 		this.calculateBalances();
-		this._cdr.detectChanges();
 	}
 
 	onCategoryChange(): void {
