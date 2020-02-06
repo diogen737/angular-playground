@@ -10,7 +10,6 @@ import { FileDatabase, FileNode, FileFlatNode } from '@model/material-data';
 @Component({
 	selector: 'app-tree',
 	templateUrl: './tree.component.html',
-	styleUrls: ['./tree.component.scss'],
 	encapsulation: ViewEncapsulation.None,
 	providers: [ FileDatabase ]
 })

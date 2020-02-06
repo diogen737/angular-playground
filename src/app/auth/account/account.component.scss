@@ -1,4 +1,4 @@
-@import 'src/styles.scss';
+@import '../../../styles-variables.scss';
 
 .profile {
 	display: flex;
@@ -47,7 +47,7 @@
 	}
 }
 
-@media screen and (min-width: $screen-sm) {
+@media (min-width: $screen-sm) {
 	.profile {
 		flex-flow: row wrap;		
 		align-items: flex-start;
@@ -82,7 +82,7 @@
 	}
 }
 
-@media screen and (min-width: $screen-md) {
+@media (min-width: $screen-md) {
 	.profile {
 		min-height: 100vh;
 	}

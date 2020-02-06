@@ -1,4 +1,4 @@
-@import 'src/styles.scss';
+@import '../../../styles-variables.scss';
 
 .grid {
 	display: flex;
@@ -23,7 +23,7 @@
 	width: 90%;
 }
 
-@media screen and (min-width: $screen-md) {
+@media (min-width: $screen-md) {
 	.grid {
 		flex-direction: row;
 

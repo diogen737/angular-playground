@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 
-import { StateSection, stateSections } from './state-group';
+import { StateSection, stateSections } from '@model/state-group';
 
 @Component({
 	selector: 'app-state-combobox',

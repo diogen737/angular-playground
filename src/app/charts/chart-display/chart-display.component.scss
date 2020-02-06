@@ -1,4 +1,4 @@
-@import 'src/styles.scss';
+@import '../../../styles-variables.scss';
 
 .chart-display-wrapper {
 	display: flex;
@@ -26,7 +26,7 @@
 	}
 }
 
-@media screen and (min-width: $screen-sm) {
+@media (min-width: $screen-sm) {
 	.chart-display-wrapper .selectors-bar {
 		flex-direction: row;
 		justify-content: space-evenly;

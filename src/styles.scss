@@ -1,25 +1,12 @@
-// Some global styles
+* {
+	box-sizing: border-box;
+}	
+body {
+	margin: 0;
+}
 
-* { box-sizing: border-box; }
-body { margin: 0; }
+@import "./styles-variables.scss";
 
-// Global variables
-
-$clr-google: #dd4b39;
-$clr-facebook: #3b5998;
-$clr-github: #333;
-
-$clr-info: #aaa;
-$clr-warn: #db6300;
-$clr-error: #eb0000;
-
-$screen-sm: 600px;
-$screen-md: 960px;
-$screen-lg: 1280px;
-$screen-xl: 1920px;
-
-
-$nav-height: 3rem;
 
 // Global classes
 
@@ -32,7 +19,6 @@ $nav-height: 3rem;
 .bg-github {
 	background-color: $clr-github !important;
 }
-
 
 .mat-warn {
 	color: #fff !important;

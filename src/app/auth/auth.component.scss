@@ -1,4 +1,4 @@
-@import 'src/styles.scss';
+@import '../../styles-variables.scss';
 
 .landing-wrapper {
 	display: flex;
@@ -31,7 +31,7 @@
 	}
 }
 
-@media screen and (max-width: $screen-md - 1px) {
+@media (max-width: $screen-md - 1px) {
 	.auth-actions > * {
 		display: flex;
 		flex-basis: 0;
@@ -41,7 +41,7 @@
 	}
 }
 
-@media screen and (min-width: $screen-md) {
+@media (min-width: $screen-md) {
 	.landing-wrapper .auth-main-section {
 		flex-direction: row;
 		flex-basis: $screen-md;

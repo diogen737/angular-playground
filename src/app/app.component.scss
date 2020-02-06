@@ -1,4 +1,4 @@
-@import 'src/styles.scss';
+@import '../styles-variables.scss';
 
 .simple-notification-wrapper.center {
 	width: 100%;
@@ -38,7 +38,7 @@
 	}
 }
 
-@media screen and (min-width: $screen-md) {
+@media (min-width: $screen-md) {
 	.simple-notification-wrapper.center {
 		width: 50%;
 	}
