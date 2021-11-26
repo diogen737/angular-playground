@@ -6,7 +6,7 @@
     "build:prod": "ng build --prod",
     "build:stats": "ng build --prod --stats-json",
     "stats": "webpack-bundle-analyzer ./dist/angular-playground/stats.json",
-    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
+    "postinstall": "ngcc"
   },
   "private": true,
   "resolutions": {
