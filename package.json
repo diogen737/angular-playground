@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "start": "ng serve",
-    "build:prod": "ng build --configuration production",
+    "build": "ng build --configuration production",
     "build:stats": "ng build --configuration production --stats-json",
     "stats": "webpack-bundle-analyzer ./dist/angular-playground/stats.json",
+    "test": "yarn build",
     "postinstall": "ngcc"
   },
   "private": true,

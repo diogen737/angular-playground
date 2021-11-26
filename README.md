@@ -16,7 +16,7 @@ yarn run start
 Or you can run the site in production mode:
 
 ```#!/bin/bash
-yarn run build:prod
+yarn run build
 http-server ./dist
 ```
 

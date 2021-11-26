@@ -2,11 +2,12 @@ language: node_js
 node_js:
   - 16
 
+git:
+  depth: 3
+
 branches:
   only:
   - master
-before_script:
-  - yarn run build:prod
 deploy:
   provider: firebase
   token:
