@@ -4,7 +4,16 @@
 
 export const environment = {
 	production: false,
-	firebase: {},
+	firebase: {
+		apiKey: 'AIzaSyBgf2xHzpR1Dpg85IljjpyWgPMctnjNkgw',
+		authDomain: 'ng-yard.firebaseapp.com',
+		databaseURL: 'https://ng-yard.firebaseio.com',
+		projectId: 'ng-yard',
+		storageBucket: 'ng-yard.appspot.com',
+		messagingSenderId: '751570145661',
+		appId: '1:751570145661:web:dd30a680ca103a48a67c14',
+		measurementId: 'G-1V62QQL7ML'
+	},
 };
 
 /*
@@ -13,4 +22,4 @@ export const environment = {
  * import the following file, but please comment it out in production mode
  * because it will have performance impact when throw error
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
