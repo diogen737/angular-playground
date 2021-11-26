@@ -10,8 +10,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -21,7 +21,7 @@ import { AppRoutes, AppComponents, AppProviders } from './app.config';
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
-		RouterModule.forRoot(AppRoutes),
+		RouterModule.forRoot(AppRoutes, { relativeLinkResolution: 'legacy' }),
 		SimpleNotificationsModule.forRoot(),
 		FlexLayoutModule,
 		ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),

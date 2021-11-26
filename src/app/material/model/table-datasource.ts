@@ -2,7 +2,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
+import { Observable, of, merge } from 'rxjs';
 
 // TODO: Replace this with your own data model type
 export interface TableItem {
@@ -56,6 +56,9 @@ export class TableDataSource extends DataSource<TableItem> {
 
 	constructor(private paginator: MatPaginator, private sort: MatSort) {
 		super();
+		this.sort.sortChange.subscribe(res => {
+			console.log(res);
+		});
 	}
 
 	/**
@@ -64,20 +67,16 @@ export class TableDataSource extends DataSource<TableItem> {
    * @returns A stream of the items to be rendered.
    */
 	connect(): Observable<TableItem[]> {
-		// Combine everything that affects the rendered data into one update
-		// stream for the data-table to consume.
-		const dataMutations = [
-			observableOf(this.data),
-			this.paginator.page,
-			this.sort.sortChange
-		];
-
 		// Set the paginators length
 		this.paginator.length = this.data.length;
 
-		return merge(...dataMutations).pipe(map(() => {
-			return this.getPagedData(this.getSortedData([...this.data]));
-		}));
+		// Combine everything that affects the rendered data into one update
+		// stream for the data-table to consume.
+		return merge(of(this.data), this.paginator.page, this.sort.sortChange)
+			.pipe(map(() => {
+				console.log('hey');
+				return this.getPagedData(this.getSortedData([...this.data]));
+			}));
 	}
 
 	/**
