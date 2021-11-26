@@ -10,6 +10,7 @@ branches:
   - master
 deploy:
   provider: firebase
+  skip_cleanup: true
   token:
     secure: "wv/tnWPpIJ0SG1Ztx1Kuz9/Jt/QzYylM/DO1lHWE/cgzwa8mlp9RslgR4TidXygdDmXtlWu5izYvyT2JxPr+1LziUNvJgE+HOebek2JVkR1CwbNjvaDg5N5FeFYswacUgiQS81ehjl9eOVj/FNzFIzW5qlskBUL8kXy2b6e54XIXhjIi8nUVxb1/pBMvaRO/Fegb/JmFr0VaFxyFShc6kpfw/kyM/xx4RGBf32eW+OwTLL7lFLe0DDRQMZgo2WreqJlI25M3uUNH9ajzkZZzFlXMuozce12odIUjwTfj1SXcboUKeOnnMEsOlbmZ+HXQD4f9ek21IQ9U23Fe0uQnf5zz/gwoDZV14wBd+YjwRgjyYDaoSgt8Yl4Y6kWsfCUh6feAy0FGuY1sUGbuNeqwFo/a1PnEc5An21B9oXwuQZ4GD+yT8sz1blKld+ENoqGOlfQ8JE9UJtdWazPhhowE4nCd6QkzmC062AptxdZsAQsOuVD1idizM3pFJW4GAAHA9QVsyRcRQWN4JGf6jL1oBNQ5hQ4shmb/053plIpRmCdUo6BDEy1cx4aZ4Lo4mldhV6FVKut42Y3ee2doQrDXTAu7dxpoUEX7JzvHYW6eOljgHb3vT/Zbhm4fqlPOtICYQJ3oDZzcWukdq3TsrHwpCDx+GwUnl1NDbyCtrc8tzaM="
   project: "ng-yard"
