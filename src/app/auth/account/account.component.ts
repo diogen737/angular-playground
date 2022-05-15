@@ -14,16 +14,16 @@ import { AuthService } from '../providers/auth.service';
 export class UserComponent {
 
 	user: firebase.default.User;
-	lastSignInTime: string;
-	creationTime: string;
+	dateLastSignin: Date;
+	dateCreated: Date;
 	signinMethod: string;
 
 	constructor(private authService: AuthService, private router: Router) {
 		authService.getCurrentUser()
 			.then((res: firebase.default.User) => {
 				this.user = res;
-				this.lastSignInTime = new Date(this.user.metadata.lastSignInTime).toLocaleDateString();
-				this.creationTime = new Date(this.user.metadata.creationTime).toLocaleDateString();
+				this.dateLastSignin = new Date(this.user.metadata.lastSignInTime);
+				this.dateCreated = new Date(this.user.metadata.creationTime);
 				this.signinMethod = res.providerData[0].providerId;
 			});
 	}
