@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,9 +25,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
-import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
-import { ModuleRoutes, ModuleComponents, ModuleProviders } from './material.config';
+import { ModuleRoutes, ModuleComponents } from './material.config';
 import { InfoPopupComponent } from './info-popup/info-popup.component';
 
 @NgModule({
@@ -48,7 +48,7 @@ import { InfoPopupComponent } from './info-popup/info-popup.component';
 		MatInputModule,
 		MatListModule,
 		MatMenuModule,
-		MatMomentDateModule,
+		MatNativeDateModule,
 		MatPaginatorModule,
 		MatSidenavModule,
 		MatSliderModule,
@@ -62,6 +62,5 @@ import { InfoPopupComponent } from './info-popup/info-popup.component';
 	],
 	entryComponents: [ InfoPopupComponent ],
 	declarations: [ ModuleComponents ],
-	providers: [ ModuleProviders ]
 })
 export class MaterialModule { }

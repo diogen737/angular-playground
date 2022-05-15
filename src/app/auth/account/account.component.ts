@@ -2,7 +2,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
 import * as firebase from 'firebase/compat/app';
-import * as moment from 'moment';
 
 import { AuthService } from '../providers/auth.service';
 
@@ -15,16 +14,16 @@ import { AuthService } from '../providers/auth.service';
 export class UserComponent {
 
 	user: firebase.default.User;
-	lastSignInTime: moment.Moment;
-	creationTime: moment.Moment;
+	lastSignInTime: string;
+	creationTime: string;
 	signinMethod: string;
 
 	constructor(private authService: AuthService, private router: Router) {
 		authService.getCurrentUser()
 			.then((res: firebase.default.User) => {
 				this.user = res;
-				this.lastSignInTime = moment(this.user.metadata.lastSignInTime);
-				this.creationTime = moment(this.user.metadata.creationTime);
+				this.lastSignInTime = new Date(this.user.metadata.lastSignInTime).toLocaleDateString();
+				this.creationTime = new Date(this.user.metadata.creationTime).toLocaleDateString();
 				this.signinMethod = res.providerData[0].providerId;
 			});
 	}

@@ -2,7 +2,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
 import { MatDialog } from '@angular/material/dialog';
-import * as moment from 'moment';
 
 import { InfoPopupComponent } from '@app/material/info-popup/info-popup.component';
 import { regexAllowValidator } from '@shared/validators/regexp-allow-validator';
@@ -21,7 +20,7 @@ export class MiscComponent {
 	LOGIN_MIN_LENGTH = 3;
 	PWD_PATTERN = PWD_PATTERN_STRONG;
 	PWD_HINT = PWD_HINT_STRONG;
-	MIN_DATE = moment();
+	MIN_DATE = new Date();
 
 	stepperGroup: FormGroup = this.fb.group({
 		formArray: this.fb.array([
